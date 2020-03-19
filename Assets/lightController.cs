@@ -48,7 +48,7 @@ public class lightController : MonoBehaviour
             previousDirection = direction;
         }
              
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + lightDirection, lightDirection);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + lightDirection/100, lightDirection);
         
         if (hit.transform.position != lastHit.transform.position)
         {
@@ -56,15 +56,25 @@ public class lightController : MonoBehaviour
             if (hit.transform.tag == "reflective")
             {
                 lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                hit.transform.GetComponent<mirrorController>().interaction = true;
-                hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
+                if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
+                if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                {
+                    hit.transform.GetComponent<mirrorController>().interaction = true;
+                    hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
+                }
             }
             else
             {
                 lineRenderer.SetPosition(1, lightDirection * 2000);
             }
             if (lastHit.tag == "reflective")
-                lastHit.GetComponent<mirrorController>().interaction = false;
+            {
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    lastHit.GetComponent<mirrorController>().interaction = false;
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                    lastHit.GetComponent<mirrorController>().numberOfInteractions--;
+            }
             lastHit = hit.transform.gameObject;
         }
         if (true) //TODO performance improvement

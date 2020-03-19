@@ -11,11 +11,10 @@ public class mirrorController : MonoBehaviour
     public string sourceDirection;
     //[HideInInspector]
     public bool interaction;
-    [HideInInspector]
-    public bool inUse;
     //[HideInInspector]
     public GameObject lastHit;
 
+    public int numberOfInteractions;
     public bool reflection;
     private LineRenderer lineRenderer;
     private int previousCorner;
@@ -32,8 +31,8 @@ public class mirrorController : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         interaction = false;
         reflection = false;
-        inUse = false;
         previousCorner = 0;
+        numberOfInteractions = 0;
         sourceDirection = "none";
         previousSourceDirection = "none";
         direction = "none";
@@ -59,9 +58,7 @@ public class mirrorController : MonoBehaviour
 
         if (interaction && reflection)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + reflectionDirection, reflectionDirection);
-            if (!inUse)
-                inUse = true;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + reflectionDirection/100, reflectionDirection);
             if (!lineRenderer.enabled)
                 lineRenderer.enabled = true;
             if (hit.transform.position != lastHit.transform.position)
@@ -70,7 +67,9 @@ public class mirrorController : MonoBehaviour
                 if (hit.transform.tag == "reflective")
                 {
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                    if (!hit.transform.GetComponent<mirrorController>().inUse)
+                    if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                        hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
+                    if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
                     {
                         hit.transform.GetComponent<mirrorController>().interaction = true;
                         hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
@@ -82,7 +81,10 @@ public class mirrorController : MonoBehaviour
                 }
                 if (lastHit.tag == "reflective")
                 {
-                    lastHit.GetComponent<mirrorController>().interaction = false;
+                    if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                        lastHit.GetComponent<mirrorController>().interaction = false;
+                    if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                        lastHit.GetComponent<mirrorController>().numberOfInteractions--;
                 }
                     
                 lastHit = hit.transform.gameObject;
@@ -104,12 +106,13 @@ public class mirrorController : MonoBehaviour
         {   //reset
             if (lastHit.tag == "reflective")
             {
-                lastHit.GetComponent<mirrorController>().interaction = false;
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    lastHit.GetComponent<mirrorController>().interaction = false;
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                    lastHit.GetComponent<mirrorController>().numberOfInteractions--;
             }
             lastHit = initialHit;
             //sourceDirection = "none";
-            if (inUse)
-                inUse = false;
             if (lineRenderer.enabled)
                 lineRenderer.enabled = false;
         }
