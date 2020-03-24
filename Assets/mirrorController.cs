@@ -14,12 +14,13 @@ public class mirrorController : MonoBehaviour
     //[HideInInspector]
     public GameObject lastHit;
 
+    
     public int numberOfInteractions;
     public bool reflection;
     private LineRenderer lineRenderer;
     private int previousCorner;
     private string previousSourceDirection;
-    private string direction;
+    public string direction;
     private Vector3 verticalDirection;
     private Vector3 horizontalDirection;
     private Vector3 reflectionDirection;
@@ -46,13 +47,14 @@ public class mirrorController : MonoBehaviour
 
             reflection = sourceCornerCheck();
 
-            //lastHit = Physics2D.Raycast(transform.position, reflectionDirection).transform.gameObject;
             if (lastHit != null && lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                     lastHit.GetComponent<mirrorController>().interaction = false;
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                {
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
+                }
             }
             lastHit = initialHit;
             previousSourceDirection = sourceDirection;
@@ -69,33 +71,48 @@ public class mirrorController : MonoBehaviour
                 lineRenderer.SetPosition(0, transform.position);
                 if (hit.transform.tag.Contains("Reflective"))
                 {
-                    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
+                    //lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                     if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
                         hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
-                    if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                    {
-                        hit.transform.GetComponent<mirrorController>().interaction = true;
-                        hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
-                    }
+                    Invoke("delayNextMirror", 0.1f);
+                    //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    //{
+                    //    hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
+                    //    hit.transform.GetComponent<mirrorController>().interaction = true;
+                    //}
+                }
+                else if(hit.transform.tag.Contains("goal"))
+                {
+                    Invoke("delayAchievedGoal", 0.2f);
                 }
                 else
                 {
-                    lineRenderer.SetPosition(1, reflectionDirection * 2000);
+                    //lineRenderer.SetPosition(1, reflectionDirection * 2000);
                 }
                 if (lastHit.tag.Contains("Reflective"))
                 {
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                         lastHit.GetComponent<mirrorController>().interaction = false;
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                    {
                         lastHit.GetComponent<mirrorController>().numberOfInteractions--;
+                    }
+                        
                 }
-                    
                 lastHit = hit.transform.gameObject;
             }
             if (true) //TODO performance improvement
             {
                 lineRenderer.SetPosition(0, transform.position);
                 if (hit.transform.tag.Contains("Reflective"))
+                {
+                    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
+                }
+                else if (hit.transform.tag.Contains("goal"))
+                {
+                    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
+                }
+                else if (hit.transform.tag.Contains("nonInteractive"))
                 {
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 }
@@ -112,7 +129,10 @@ public class mirrorController : MonoBehaviour
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                     lastHit.GetComponent<mirrorController>().interaction = false;
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                {
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
+                }
+
             }
             lastHit = initialHit;
             //sourceDirection = "none";
@@ -121,6 +141,24 @@ public class mirrorController : MonoBehaviour
         }
 
 
+    }
+
+    private void delayAchievedGoal()
+    {
+        if (lastHit.tag.Contains("goal"))
+            lastHit.GetComponent<goalController>().goalAchieved();
+    }
+
+    private void delayNextMirror()
+    {
+        if (lastHit.tag.Contains("Reflective"))
+        {
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2) 
+            {       
+                lastHit.GetComponent<mirrorController>().sourceDirection = direction; 
+                lastHit.GetComponent<mirrorController>().interaction = true;
+            }
+        }
     }
 
     private bool sourceCornerCheck()

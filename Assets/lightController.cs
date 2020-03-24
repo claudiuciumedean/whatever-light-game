@@ -58,11 +58,12 @@ public class lightController : MonoBehaviour
                 lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
                     hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
-                if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                {
-                    hit.transform.GetComponent<mirrorController>().interaction = true;
-                    hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
-                }
+                Invoke("delayNextMirror", 0.1f);
+                //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                //{
+                //    hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
+                //    hit.transform.GetComponent<mirrorController>().interaction = true;
+                //}
             }
             else
             {
@@ -73,7 +74,9 @@ public class lightController : MonoBehaviour
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                     lastHit.GetComponent<mirrorController>().interaction = false;
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                {
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
+                }
             }
             lastHit = hit.transform.gameObject;
         }
@@ -90,4 +93,18 @@ public class lightController : MonoBehaviour
             }
         }
     }
+
+    private void delayNextMirror()
+    {
+        if (lastHit.tag.Contains("Reflective"))
+        {
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+            {
+                lastHit.GetComponent<mirrorController>().sourceDirection = direction;
+                lastHit.GetComponent<mirrorController>().interaction = true;
+            }
+        }
+    }
+
+
 }
