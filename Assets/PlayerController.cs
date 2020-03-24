@@ -28,6 +28,16 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D leftRay = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, distance, boxMask);
         RaycastHit2D rightRay = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, boxMask);
 
+
+        if (Input.GetKeyDown(KeyCode.Space) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable"))
+            rotateBox(rightRay);
+        if (Input.GetKeyDown(KeyCode.Space) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable"))
+            rotateBox(leftRay);
+        if (Input.GetKeyDown(KeyCode.Space) && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Rotatable"))
+            rotateBox(upRay);
+        if (Input.GetKeyDown(KeyCode.Space) && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Rotatable"))
+            rotateBox(downRay);
+
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
@@ -97,5 +107,14 @@ public class PlayerController : MonoBehaviour
     {       
         box = ray.collider.gameObject;
         box.transform.position += position;        
+    }
+    
+    void rotateBox(RaycastHit2D ray)
+    {
+        ray.transform.Rotate(0, 0, -90);
+        if (ray.transform.GetComponent<mirrorController>().corner < 4)
+            ray.transform.GetComponent<mirrorController>().corner++;
+        else
+            ray.transform.GetComponent<mirrorController>().corner = 1;      
     }
 }

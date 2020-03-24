@@ -49,7 +49,10 @@ public class mirrorController : MonoBehaviour
             //lastHit = Physics2D.Raycast(transform.position, reflectionDirection).transform.gameObject;
             if (lastHit != null && lastHit.tag.Contains("Reflective"))
             {
-                lastHit.GetComponent<mirrorController>().interaction = false;
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    lastHit.GetComponent<mirrorController>().interaction = false;
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                    lastHit.GetComponent<mirrorController>().numberOfInteractions--;
             }
             lastHit = initialHit;
             previousSourceDirection = sourceDirection;

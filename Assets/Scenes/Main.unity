@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 4
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 4
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 4
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
@@ -2234,7 +2234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 4
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
@@ -3981,7 +3981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 4
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
@@ -4179,7 +4179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 4
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
@@ -4821,7 +4821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170361d2f7342da40bf5d807ad2e4cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corner: 1
+  corner: 3
   initialHit: {fileID: 2019329368}
   sourceDirection: 
   interaction: 0
