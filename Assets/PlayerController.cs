@@ -37,13 +37,13 @@ public class PlayerController : MonoBehaviour
                 {
                     movePoint.position += xPos;
                 
-                    if(Input.GetAxisRaw("Horizontal") == 1 && rightRay.collider != null && rightRay.collider.gameObject.tag == "Pushable") {
+                    if(Input.GetAxisRaw("Horizontal") == 1 && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Pushable")) {
                         Vector3 xPos_Right = rightRay.collider.gameObject.transform.position + xPos;
                         if(!Physics2D.OverlapCircle(xPos_Right, .2f, stopsMovement)) {
                             this.pushBox(rightRay, xPos);
                         }
                     }
-                    else if(Input.GetAxisRaw("Horizontal") == -1 && leftRay.collider != null && leftRay.collider.gameObject.tag == "Pushable")
+                    else if(Input.GetAxisRaw("Horizontal") == -1 && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Pushable"))
                     {
                         Vector3 yPos_Left = leftRay.collider.gameObject.transform.position + xPos;
                         if(!Physics2D.OverlapCircle(yPos_Left, .2f, stopsMovement)) {
@@ -61,13 +61,13 @@ public class PlayerController : MonoBehaviour
                 {
                     movePoint.position += yPos;
 
-                    if(Input.GetAxisRaw("Vertical") == 1 && upRay.collider != null && upRay.collider.gameObject.tag == "Pushable") {
+                    if(Input.GetAxisRaw("Vertical") == 1 && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Pushable")) {
                         Vector3 yPos_Up = upRay.collider.gameObject.transform.position + yPos;
                         if(!Physics2D.OverlapCircle(yPos_Up, .2f, stopsMovement)) {
                             this.pushBox(upRay, yPos);
                         }
                     }
-                    else if(Input.GetAxisRaw("Vertical") == -1 && downRay.collider != null && downRay.collider.gameObject.tag == "Pushable")
+                    else if(Input.GetAxisRaw("Vertical") == -1 && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Pushable"))
                     {
                         Vector3 yPos_Down = downRay.collider.gameObject.transform.position + yPos;
                         if(!Physics2D.OverlapCircle(yPos_Down, .2f, stopsMovement)) {

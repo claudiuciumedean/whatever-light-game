@@ -47,7 +47,7 @@ public class mirrorController : MonoBehaviour
             reflection = sourceCornerCheck();
 
             //lastHit = Physics2D.Raycast(transform.position, reflectionDirection).transform.gameObject;
-            if (lastHit != null && lastHit.tag == "reflective")
+            if (lastHit != null && lastHit.tag.Contains("Reflective"))
             {
                 lastHit.GetComponent<mirrorController>().interaction = false;
             }
@@ -64,7 +64,7 @@ public class mirrorController : MonoBehaviour
             if (hit.transform.position != lastHit.transform.position)
             {
                 lineRenderer.SetPosition(0, transform.position);
-                if (hit.transform.tag == "reflective")
+                if (hit.transform.tag.Contains("Reflective"))
                 {
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                     if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
@@ -79,7 +79,7 @@ public class mirrorController : MonoBehaviour
                 {
                     lineRenderer.SetPosition(1, reflectionDirection * 2000);
                 }
-                if (lastHit.tag == "reflective")
+                if (lastHit.tag.Contains("Reflective"))
                 {
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                         lastHit.GetComponent<mirrorController>().interaction = false;
@@ -92,7 +92,7 @@ public class mirrorController : MonoBehaviour
             if (true) //TODO performance improvement
             {
                 lineRenderer.SetPosition(0, transform.position);
-                if (hit.transform.tag == "reflective")
+                if (hit.transform.tag.Contains("Reflective"))
                 {
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 }
@@ -104,7 +104,7 @@ public class mirrorController : MonoBehaviour
         }
         else
         {   //reset
-            if (lastHit.tag == "reflective")
+            if (lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                     lastHit.GetComponent<mirrorController>().interaction = false;

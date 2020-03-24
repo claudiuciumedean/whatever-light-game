@@ -40,7 +40,7 @@ public class lightController : MonoBehaviour
             }
             //lastHit = Physics2D.Raycast(transform.position, lightDirection).transform.gameObject;
             //lineRenderer.SetPosition(1, lastHit.transform.position);
-            if (lastHit != null && lastHit.tag == "reflective")
+            if (lastHit != null && lastHit.tag.Contains("Reflective"))
             {
                 lastHit.GetComponent<mirrorController>().interaction = false;
             }
@@ -53,7 +53,7 @@ public class lightController : MonoBehaviour
         if (hit.transform.position != lastHit.transform.position)
         {
             lineRenderer.SetPosition(0, transform.position);
-            if (hit.transform.tag == "reflective")
+            if (hit.transform.tag.Contains("Reflective"))
             {
                 lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
@@ -68,7 +68,7 @@ public class lightController : MonoBehaviour
             {
                 lineRenderer.SetPosition(1, lightDirection * 2000);
             }
-            if (lastHit.tag == "reflective")
+            if (lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
                     lastHit.GetComponent<mirrorController>().interaction = false;
@@ -80,7 +80,7 @@ public class lightController : MonoBehaviour
         if (true) //TODO performance improvement
         {
             lineRenderer.SetPosition(0, transform.position);
-            if (hit.transform.tag == "reflective")
+            if (hit.transform.tag.Contains("Reflective"))
             {
                 lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
             }

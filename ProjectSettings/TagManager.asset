@@ -4,10 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - reflective
   - goal
   - nonInteractive
   - Pushable
+  - Reflective Pushable
+  - Reflective
+  - Reflective Pushable Rotatable
   layers:
   - Default
   - TransparentFX
