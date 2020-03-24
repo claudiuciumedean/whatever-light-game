@@ -19,4 +19,12 @@ public class ButtonHandler : MonoBehaviour
     public void startGame() {
         GameManager.Instance.startGame();
     }
+
+    public void pauseGame() {
+        GameManager.Instance.pauseGame();
+    }
+
+    public void goToNextLevel() {
+        GameManager.Instance.goToNextLevel();
+    }
 }
