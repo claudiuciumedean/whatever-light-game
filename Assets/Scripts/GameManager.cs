@@ -22,16 +22,22 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void completeLevel() {
-        this.loadLevel(++currentLevel);
-    } 
+        int tempIdx = ++currentLevel;
 
-    public void loadLevel(int levelIndex) {
-        if(levelIndex == levelsIdx.Count) {
+        if(tempIdx == levelsIdx.Count) {
             this.showStartMenuPanel();
             return;
         }
 
+        this.loadLevel(tempIdx);
+    } 
+
+    public void loadLevel(int levelIndex) {
         currentLevel = levelIndex;
+        SceneManager.LoadScene(levelsIdx[currentLevel]);
+    }
+
+    public void restartLevel() {
         SceneManager.LoadScene(levelsIdx[currentLevel]);       
     }
 }

@@ -12,19 +12,5 @@ public class goalController : MonoBehaviour
     {
         spriteRenderer.sprite = achievedGoal;
         levelCompletePanel.SetActive(true);
-        GameManager.Instance.completeLevel();
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

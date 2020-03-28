@@ -5,20 +5,24 @@ using UnityEngine;
 public class GameMenuHandler : MonoBehaviour
 {
     public GameObject pausePanel;
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void pauseGame() {
         pausePanel.SetActive(true);
+    }
+
+    public void resumeGame() {
+        pausePanel.SetActive(false);
+    }
+
+    public void restartLevel() {
+        GameManager.Instance.restartLevel();
+    }
+
+    public void showStartScreen() {
+        GameManager.Instance.showStartMenuPanel();
+    }
+
+    public void nextLevel() {
+        GameManager.Instance.completeLevel();
     }
 }
