@@ -5,19 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    List<int> levelsIdx = new List<int> { 0, 1, 2, 3, 4, 5 };
+    List<int> levelsIdx = new List<int> { 2, 3, 4, 5 };
     int currentLevel;
-    public GameObject pausePanel;
+
+    public void showStartMenuPanel() {
+        SceneManager.LoadScene("StartMenuScene");
+    }
+
+    public void showSelectLevelPanel() {
+        SceneManager.LoadScene("LevelSelectScene");
+    }
 
     public void startGame() {
-        SceneManager.LoadScene("LevelOne");
+        currentLevel = 0;
+        SceneManager.LoadScene(levelsIdx[currentLevel]);
     }
 
-    public void pauseGame() {
-        pausePanel.SetActive(true);
-    }
+    public void completeLevel() {
+        this.loadLevel(++currentLevel);
+    } 
 
-    public void goToNextLevel() {
-        Debug.Log("Go to next level");
+    public void loadLevel(int levelIndex) {
+        if(levelIndex == levelsIdx.Count) {
+            this.showStartMenuPanel();
+            return;
+        }
+
+        currentLevel = levelIndex;
+        SceneManager.LoadScene(levelsIdx[currentLevel]);       
     }
 }

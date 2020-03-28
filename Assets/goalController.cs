@@ -6,10 +6,13 @@ public class goalController : MonoBehaviour
 {
     public Sprite achievedGoal;
     public SpriteRenderer spriteRenderer;
+    public GameObject levelCompletePanel;
 
     public void goalAchieved()
     {
         spriteRenderer.sprite = achievedGoal;
+        levelCompletePanel.SetActive(true);
+        GameManager.Instance.completeLevel();
     }
 
 

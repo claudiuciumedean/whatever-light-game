@@ -9,22 +9,21 @@ public class ButtonHandler : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
         
+    }    
+    public void showStartMenuPanel() {
+        GameManager.Instance.showStartMenuPanel();
     }
-
+    public void showSelectLevelPanel() {
+        GameManager.Instance.showSelectLevelPanel();
+    }
     public void startGame() {
         GameManager.Instance.startGame();
     }
-
-    public void pauseGame() {
-        GameManager.Instance.pauseGame();
-    }
-
-    public void goToNextLevel() {
-        GameManager.Instance.goToNextLevel();
+    public void loadLevel(int levelIndex) {
+        GameManager.Instance.loadLevel(levelIndex);
     }
 }

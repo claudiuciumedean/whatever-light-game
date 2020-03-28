@@ -112,9 +112,13 @@ public class PlayerController : MonoBehaviour
     void rotateBox(RaycastHit2D ray)
     {
         ray.transform.Rotate(0, 0, -90);
-        if (ray.transform.GetComponent<mirrorController>().corner < 4)
+        if (ray.transform.GetComponent<mirrorController>().corner < 4) 
+        {
             ray.transform.GetComponent<mirrorController>().corner++;
+        }
         else
+        {
             ray.transform.GetComponent<mirrorController>().corner = 1;      
+        }
     }
 }
