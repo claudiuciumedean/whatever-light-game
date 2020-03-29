@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    List<int> levelsIdx = new List<int> { 2, 3, 4, 5 };
+    List<int> levelsIdx = new List<int> { 2, 3, 4, 5, 6};
     int currentLevel;
 
     public void showStartMenuPanel() {

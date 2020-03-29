@@ -4385,7 +4385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achievedGoal: {fileID: 21300000, guid: d95d95d3f8f28434c91657cf9e99f79b, type: 3}
   spriteRenderer: {fileID: 1485587845}
-  levelCompletePanel: {fileID: 0}
+  levelCompletePanel: {fileID: 1800351411}
 --- !u!1 &1537108543
 GameObject:
   m_ObjectHideFlags: 0
