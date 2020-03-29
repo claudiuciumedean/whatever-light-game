@@ -83,14 +83,10 @@ public class lightController : MonoBehaviour
         if (true) //TODO performance improvement
         {
             lineRenderer.SetPosition(0, transform.position);
-            if (hit.transform.tag.Contains("Reflective"))
-            {
+            if (hit)
                 lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-            }
             else
-            {
                 lineRenderer.SetPosition(1, lightDirection * 2000);
-            }
         }
     }
 

@@ -104,22 +104,22 @@ public class mirrorController : MonoBehaviour
             if (true) //TODO performance improvement
             {
                 lineRenderer.SetPosition(0, transform.position);
-                if (hit.transform.tag.Contains("Reflective"))
-                {
+                //if (hit.transform.tag.Contains("Reflective"))
+                //{
+                //    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
+                //}
+                //else if (hit.transform.tag.Contains("goal"))
+                //{
+                //    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
+                //}
+                //else if (hit.transform.tag.Contains("nonInteractive"))
+                //{
+                //    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
+                //}
+                if (hit)
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                }
-                else if (hit.transform.tag.Contains("goal"))
-                {
-                    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                }
-                else if (hit.transform.tag.Contains("nonInteractive"))
-                {
-                    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                }
                 else
-                {
                     lineRenderer.SetPosition(1, reflectionDirection * 2000);
-                }
             }
         }
         else

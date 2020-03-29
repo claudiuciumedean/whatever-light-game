@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
 
     public Transform movePoint;
     public LayerMask stopsMovement;
+    public LayerMask interactive;
     public LayerMask boxMask;
-    public Animator animation;
+    public Animator animator;
     GameObject box;
 
     // Start is called before the first frame update
@@ -49,15 +50,23 @@ public class PlayerController : MonoBehaviour
                 
                     if(Input.GetAxisRaw("Horizontal") == 1 && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Pushable")) {
                         Vector3 xPos_Right = rightRay.collider.gameObject.transform.position + xPos;
-                        if(!Physics2D.OverlapCircle(xPos_Right, .2f, stopsMovement)) {
+                        if(!Physics2D.OverlapCircle(xPos_Right, .2f, stopsMovement) && !Physics2D.OverlapCircle(xPos_Right, .2f, interactive)) {
                             this.pushBox(rightRay, xPos);
+                        }
+                        else
+                        {
+                            movePoint.position -= xPos;
                         }
                     }
                     else if(Input.GetAxisRaw("Horizontal") == -1 && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Pushable"))
                     {
                         Vector3 yPos_Left = leftRay.collider.gameObject.transform.position + xPos;
-                        if(!Physics2D.OverlapCircle(yPos_Left, .2f, stopsMovement)) {
+                        if(!Physics2D.OverlapCircle(yPos_Left, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Left, .2f, interactive)) {
                             this.pushBox(leftRay, xPos);
+                        }
+                        else
+                        {
+                            movePoint.position -= xPos;
                         }
                     }
                 }
@@ -73,25 +82,33 @@ public class PlayerController : MonoBehaviour
 
                     if(Input.GetAxisRaw("Vertical") == 1 && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Pushable")) {
                         Vector3 yPos_Up = upRay.collider.gameObject.transform.position + yPos;
-                        if(!Physics2D.OverlapCircle(yPos_Up, .2f, stopsMovement)) {
+                        if(!Physics2D.OverlapCircle(yPos_Up, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Up, .2f, interactive)) {
                             this.pushBox(upRay, yPos);
+                        }
+                        else
+                        {
+                            movePoint.position -= yPos;
                         }
                     }
                     else if(Input.GetAxisRaw("Vertical") == -1 && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Pushable"))
                     {
                         Vector3 yPos_Down = downRay.collider.gameObject.transform.position + yPos;
-                        if(!Physics2D.OverlapCircle(yPos_Down, .2f, stopsMovement)) {
+                        if(!Physics2D.OverlapCircle(yPos_Down, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Down, .2f, interactive)) {
                             this.pushBox(downRay, yPos);
+                        }
+                        else
+                        {
+                            movePoint.position -= yPos;
                         }
                     }
                 }
             }
 
-            animation.SetBool("moving", false);
+            animator.SetBool("moving", false);
             return;
-        }       
+        }
 
-        animation.SetBool("moving", true);
+        animator.SetBool("moving", true);
     }
 
     void OnDrawGizmos()

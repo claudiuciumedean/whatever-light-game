@@ -630,7 +630,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 698642024}
   - component: {fileID: 698642023}
   - component: {fileID: 698642022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror (2)
   m_TagString: Reflective Rotatable
   m_Icon: {fileID: 0}
@@ -2161,10 +2161,13 @@ MonoBehaviour:
   stopsMovement:
     serializedVersion: 2
     m_Bits: 256
+  interactive:
+    serializedVersion: 2
+    m_Bits: 0
   boxMask:
     serializedVersion: 2
     m_Bits: 55
-  animation: {fileID: 1060546559}
+  animator: {fileID: 0}
 --- !u!4 &1060546558
 Transform:
   m_ObjectHideFlags: 0
@@ -3854,7 +3857,7 @@ GameObject:
   - component: {fileID: 1142492835}
   - component: {fileID: 1142492834}
   - component: {fileID: 1142492837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LightSource
   m_TagString: nonInteractive
   m_Icon: {fileID: 0}
@@ -4253,7 +4256,7 @@ GameObject:
   - component: {fileID: 1485587845}
   - component: {fileID: 1485587846}
   - component: {fileID: 1485587847}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Goal
   m_TagString: goal
   m_Icon: {fileID: 0}
@@ -4700,7 +4703,7 @@ GameObject:
   - component: {fileID: 1727184496}
   - component: {fileID: 1727184495}
   - component: {fileID: 1727184494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror (3)
   m_TagString: Reflective Rotatable
   m_Icon: {fileID: 0}
