@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask boxMask;
     public Animator animator;
     GameObject box;
-
+    Stack<Vector3> state = new Stack<Vector3>();
+    GameObject lastInteracted = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.R) && lastInteracted != null) 
+        {    
+            StateManager stateManager = (StateManager) lastInteracted.GetComponent(typeof(StateManager));
+            if(!stateManager.isStateEmpty()) {
+                Vector3 lastInteractedState =  stateManager.getLastState();
+                lastInteracted.transform.position -= lastInteractedState;
+                
+                if(this.state.Count > 0 && this.state.Peek() == lastInteractedState) 
+                {
+                    Vector3 playerLastState = this.state.Pop();
+                    movePoint.position -= playerLastState;
+                }
+            }        
+        }
+
         Physics2D.queriesStartInColliders = false;
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
         RaycastHit2D upRay = Physics2D.Raycast(transform.position, Vector2.up * transform.localScale.y, distance, boxMask);
@@ -29,15 +46,25 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D leftRay = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, distance, boxMask);
         RaycastHit2D rightRay = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, boxMask);
 
-
-        if (Input.GetKeyDown(KeyCode.Space) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable"))
-            rotateBox(rightRay);
-        if (Input.GetKeyDown(KeyCode.Space) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable"))
-            rotateBox(leftRay);
+        if (Input.GetKeyDown(KeyCode.Space) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable")) 
+        {
+            this.rotateBox(rightRay);
+        }
+            
+        if (Input.GetKeyDown(KeyCode.Space) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable")) 
+        {
+            this.rotateBox(leftRay);
+        }
+            
         if (Input.GetKeyDown(KeyCode.Space) && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Rotatable"))
-            rotateBox(upRay);
+        {
+            this.rotateBox(upRay);
+        }
+            
         if (Input.GetKeyDown(KeyCode.Space) && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Rotatable"))
-            rotateBox(downRay);
+        {
+            this.rotateBox(downRay);
+        }
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
@@ -47,7 +74,8 @@ public class PlayerController : MonoBehaviour
                 if (!Physics2D.OverlapCircle(movePoint.position + xPos, .2f, stopsMovement))
                 {
                     movePoint.position += xPos;
-                
+                    this.state.Push(xPos);
+
                     if(Input.GetAxisRaw("Horizontal") == 1 && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Pushable")) {
                         Vector3 xPos_Right = rightRay.collider.gameObject.transform.position + xPos;
                         if(!Physics2D.OverlapCircle(xPos_Right, .2f, stopsMovement) && !Physics2D.OverlapCircle(xPos_Right, .2f, interactive)) {
@@ -79,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 if (!Physics2D.OverlapCircle(movePoint.position + yPos, .2f, stopsMovement))
                 {
                     movePoint.position += yPos;
+                    this.state.Push(yPos);
 
                     if(Input.GetAxisRaw("Vertical") == 1 && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Pushable")) {
                         Vector3 yPos_Up = upRay.collider.gameObject.transform.position + yPos;
@@ -123,7 +152,12 @@ public class PlayerController : MonoBehaviour
     void pushBox(RaycastHit2D ray, Vector3 position)
     {       
         box = ray.collider.gameObject;
-        box.transform.position += position;        
+        lastInteracted = box;
+
+        box.transform.position += position;
+
+        StateManager stateManager = (StateManager) box.GetComponent(typeof(StateManager));
+        stateManager.pushNewState(position);  
     }
     
     void rotateBox(RaycastHit2D ray)
