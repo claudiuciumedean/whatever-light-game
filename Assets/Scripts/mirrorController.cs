@@ -58,6 +58,10 @@ public class mirrorController : MonoBehaviour
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
                 }
             }
+            if (lastHit.tag.Contains("Prism"))
+            {
+                lastHit.GetComponent<prismController>().sourceDirection = "none";
+            }
             lastHit = initialHit;
             previousSourceDirection = sourceDirection;
             previousCorner = corner;
@@ -87,8 +91,22 @@ public class mirrorController : MonoBehaviour
                 {
                     hit.transform.GetComponent<prismController>().sourceDirection = direction;
                 }
-                else if(hit.transform.tag.Contains("goal"))
+                else if(hit.transform.tag.Contains("Goal"))
                 {
+                    string tmpColor = "white";
+                    if (lightColor == Color.red)
+                    {
+                        tmpColor = "red";
+                    }
+                    else if(lightColor == Color.green)
+                    {
+                        tmpColor = "green";
+                    }
+                    else if (lightColor == Color.blue)
+                    {
+                        tmpColor = "blue";
+                    }
+                    hit.transform.GetComponent<goalController>().sourceColor = tmpColor;
                     Invoke("delayAchievedGoal", 0.2f);
                 }
                 else
@@ -157,7 +175,7 @@ public class mirrorController : MonoBehaviour
 
     private void delayAchievedGoal()
     {
-        if (lastHit.tag.Contains("goal"))
+        if (lastHit.tag.Contains("Goal"))
             lastHit.GetComponent<goalController>().goalAchieved();
     }
 

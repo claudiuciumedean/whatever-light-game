@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4302244202563517825}
   - component: {fileID: 4302244202563517824}
   - component: {fileID: 4302244202563517839}
-  - component: {fileID: 4302244202563517838}
+  - component: {fileID: -892504615561051282}
   m_Layer: 8
   m_Name: Mirror Rotatable
   m_TagString: Reflective Rotatable
@@ -168,6 +168,7 @@ MonoBehaviour:
   corner: 1
   initialHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1,
     type: 3}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1, type: 3}
@@ -224,8 +225,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4302244202563517838
-PolygonCollider2D:
+--- !u!61 &-892504615561051282
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -247,11 +248,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.4375}
-      - {x: -0.4375, y: -0.5}
-      - {x: 0.25, y: -0.5}
-      - {x: 0.4375, y: -0.3125}
-      - {x: 0.4375, y: 0.5}
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2}
+  m_EdgeRadius: 0

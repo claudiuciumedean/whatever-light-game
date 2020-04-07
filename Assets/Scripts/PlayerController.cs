@@ -191,19 +191,19 @@ public class PlayerController : MonoBehaviour
             {
                 case "down":
                     ray.transform.GetComponent<prismController>().direction = "left";
-                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_1");
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_rot_1");
                     break;
                 case "up":
                     ray.transform.GetComponent<prismController>().direction = "right";
-                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_3");
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_rot_3");
                     break;
                 case "left":
                     ray.transform.GetComponent<prismController>().direction = "up";
-                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_2");
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_rot_2");
                     break;
                 case "right":
                     ray.transform.GetComponent<prismController>().direction = "down";
-                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_4");
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_rot_4");
                     break;
             }
         }    

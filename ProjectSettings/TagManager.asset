@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - goal
   - nonInteractive
   - Pushable
   - Reflective Pushable
@@ -12,6 +11,10 @@ TagManager:
   - Reflective Pushable Rotatable
   - Reflective Rotatable
   - Prism Pushable Rotatable
+  - Goal White
+  - Goal Red
+  - Goal Green
+  - Goal Blue
   layers:
   - Default
   - TransparentFX

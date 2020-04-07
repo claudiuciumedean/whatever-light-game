@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 75250732749942733}
-  - component: {fileID: 75250732749942730}
   - component: {fileID: 75250732749942731}
-  - component: {fileID: 75250732749942728}
   - component: {fileID: 75250732749942729}
+  - component: {fileID: 6499698198356490896}
+  - component: {fileID: -8321241565863190706}
   m_Layer: 8
-  m_Name: Goal
-  m_TagString: goal
+  m_Name: Pyramid Blue
+  m_TagString: Goal Green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,33 +28,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75250732749942732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &75250732749942730
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75250732749942732}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &75250732749942731
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 63fa5a48028e0044d9f0cd8edfea3c31, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b74d3c6b2375a2448c96b1d6e6b9f3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,8 +84,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &75250732749942728
-PolygonCollider2D:
+--- !u!114 &75250732749942729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75250732749942732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4f745f605538c45a8d8bad5d5c1939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievedGoal: {fileID: 21300000, guid: eedecf803a4446c428a7df89e44ef0e3, type: 3}
+  sourceColor: 
+  pyramidColor: blue
+  spriteRenderer: {fileID: 75250732749942731}
+  levelCompletePanel: {fileID: 0}
+--- !u!61 &6499698198356490896
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,28 +124,27 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.1875, y: 0.5}
-      - {x: -0.5, y: -0.125}
-      - {x: -0.5, y: -0.5}
-      - {x: -0.2361002, y: -0.28779936}
-      - {x: 0.2008481, y: -0.27895164}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: -0.125}
-      - {x: 0.1875, y: 0.5}
---- !u!114 &75250732749942729
-MonoBehaviour:
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2}
+  m_EdgeRadius: 0
+--- !u!50 &-8321241565863190706
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75250732749942732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d4f745f605538c45a8d8bad5d5c1939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  achievedGoal: {fileID: 21300000, guid: d95d95d3f8f28434c91657cf9e99f79b, type: 3}
-  spriteRenderer: {fileID: 75250732749942731}
-  levelCompletePanel: {fileID: 0}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

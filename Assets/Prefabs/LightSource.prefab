@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: down
   initialHit: {fileID: 0}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &724104063414020933
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 48609024de23d7e4d938673ca0bfaf3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6bfbecd2bed50d4f937c2b9ccae5038, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -219,5 +220,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
