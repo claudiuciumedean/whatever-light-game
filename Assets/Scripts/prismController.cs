@@ -7,11 +7,12 @@ public class prismController : MonoBehaviour
     public GameObject redLight;
     public GameObject greenLight;
     public GameObject blueLight;
+    public GameObject initialHit;
 
     public string direction;
-    public string prevDirection;
     public string sourceDirection;
-    public string prevSourceDirection;
+    public string sourceColor;
+    public bool newPosition;
 
     string redDir;
     string greenDir;
@@ -23,24 +24,46 @@ public class prismController : MonoBehaviour
 
     void Start()
     {
-        prevDirection = "none";
-        prevSourceDirection = "none";
+        redLight.GetComponent<prismBeamController>().initialHit = initialHit;
+        greenLight.GetComponent<prismBeamController>().initialHit = initialHit;
+        blueLight.GetComponent<prismBeamController>().initialHit = initialHit;
+        redLight.GetComponent<prismBeamController>().lastHit = initialHit;
+        greenLight.GetComponent<prismBeamController>().lastHit = initialHit;
+        blueLight.GetComponent<prismBeamController>().lastHit = initialHit;
+        newPosition = true;
     }
 
     void Update()
     {
+
+        if (newPosition)
+        {
+            updatePosition();
+            newPosition = false;
+        }
+
+
         if (activationCheck())
         {
-            redLight.GetComponent<prismBeamController>().updateBeam(redBeam, redDir);
-            greenLight.GetComponent<prismBeamController>().updateBeam(greenBeam, greenDir);
-            blueLight.GetComponent<prismBeamController>().updateBeam(blueBeam, blueDir);   
-            redLight.GetComponent<prismBeamController>().active = true;
-            greenLight.GetComponent<prismBeamController>().active = true;
-            blueLight.GetComponent<prismBeamController>().active = true;
-            redLight.GetComponent<LineRenderer>().enabled = true;
-            greenLight.GetComponent<LineRenderer>().enabled = true;
-            blueLight.GetComponent<LineRenderer>().enabled = true;
-        } 
+            if (sourceColor == "white" || sourceColor == "red")
+            {
+                redLight.GetComponent<prismBeamController>().updateBeam(redBeam, redDir);
+                redLight.GetComponent<prismBeamController>().active = true;
+                redLight.GetComponent<LineRenderer>().enabled = true;
+            }
+            if (sourceColor == "white" || sourceColor == "green")
+            {
+                greenLight.GetComponent<prismBeamController>().updateBeam(greenBeam, greenDir);
+                greenLight.GetComponent<prismBeamController>().active = true;
+                greenLight.GetComponent<LineRenderer>().enabled = true;
+            }
+            if (sourceColor == "white" || sourceColor == "blue")
+            {
+                blueLight.GetComponent<prismBeamController>().updateBeam(blueBeam, blueDir);
+                blueLight.GetComponent<prismBeamController>().active = true;
+                blueLight.GetComponent<LineRenderer>().enabled = true;
+            }
+        }
         else
         {
             redLight.GetComponent<prismBeamController>().active = false;
@@ -63,6 +86,40 @@ public class prismController : MonoBehaviour
         blueLight.GetComponent<LineRenderer>().enabled = false;
     }
 
+    public void updatePosition()
+    {
+        switch (direction)
+        {
+            case "up":
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.16f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.13f, 0.666f);
+                redLight.transform.localPosition = new Vector3(0.25f, -0.12f, 0.0f);
+                greenLight.transform.localPosition = new Vector3(0.0f, -0.2f, 0.0f);
+                blueLight.transform.localPosition = new Vector3(-0.25f, -0.12f, 0.0f);
+                break;
+            case "down":
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.2f, 0.5f);
+                redLight.transform.localPosition = new Vector3(0.2f,0.0f,0.0f);
+                greenLight.transform.localPosition = new Vector3(0.0f,0.45f,0.0f);
+                blueLight.transform.localPosition = new Vector3(-0.2f,0.0f,0.0f);
+                break;
+            case "right":
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.04f, -0.0f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.2f);
+                redLight.transform.localPosition = new Vector3(0.0f, -0.15f, 0.0f);
+                greenLight.transform.localPosition = new Vector3(-0.189f, -0.1f, 0.0f);
+                blueLight.transform.localPosition = new Vector3(0.0f, 0.4f, 0.0f);
+                break;
+            case "left":
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(-0.026f, 0.0f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.28f, 0.2f);
+                redLight.transform.localPosition = new Vector3(0.0f, 0.4f, 0.0f);
+                greenLight.transform.localPosition = new Vector3(0.19f, -0.05f, 0.0f);
+                blueLight.transform.localPosition = new Vector3(0f, -0.2f, 0.0f);
+                break;
+        }
+    }
 
     bool activationCheck()
     {

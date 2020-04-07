@@ -16,7 +16,7 @@ public class mirrorController : MonoBehaviour
     //[HideInInspector]
     public GameObject lastHit;
 
-    
+
     public int numberOfInteractions;
     public bool reflection;
     private LineRenderer lineRenderer;
@@ -24,7 +24,7 @@ public class mirrorController : MonoBehaviour
     private string previousSourceDirection;
     public string direction;
     private Vector3 reflectionDirection;
-    
+
 
     void Start()
     {
@@ -44,7 +44,7 @@ public class mirrorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((corner != previousCorner)||(sourceDirection != previousSourceDirection))
+        if ((corner != previousCorner) || (sourceDirection != previousSourceDirection))
         {
 
             reflection = sourceCornerCheck();
@@ -69,7 +69,7 @@ public class mirrorController : MonoBehaviour
 
         if (interaction && reflection)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + reflectionDirection/100, reflectionDirection);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + reflectionDirection / 100, reflectionDirection);
             if (!lineRenderer.enabled)
                 lineRenderer.enabled = true;
             if (hit.transform.position != lastHit.transform.position)
@@ -81,38 +81,18 @@ public class mirrorController : MonoBehaviour
                     if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
                         hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
                     Invoke("delayNextMirror", 0.1f);
-                    //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                    //{
-                    //    hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
-                    //    hit.transform.GetComponent<mirrorController>().interaction = true;
-                    //}
                 }
                 else if (hit.transform.tag.Contains("Prism"))
                 {
                     hit.transform.GetComponent<prismController>().sourceDirection = direction;
+                    hit.transform.GetComponent<prismController>().sourceColor = colorToString();
                 }
-                else if(hit.transform.tag.Contains("Goal"))
+                else if (hit.transform.tag.Contains("Goal"))
                 {
-                    string tmpColor = "white";
-                    if (lightColor == Color.red)
-                    {
-                        tmpColor = "red";
-                    }
-                    else if(lightColor == Color.green)
-                    {
-                        tmpColor = "green";
-                    }
-                    else if (lightColor == Color.blue)
-                    {
-                        tmpColor = "blue";
-                    }
-                    hit.transform.GetComponent<goalController>().sourceColor = tmpColor;
+                    hit.transform.GetComponent<goalController>().sourceColor = colorToString();
                     Invoke("delayAchievedGoal", 0.2f);
                 }
-                else
-                {
-                    //lineRenderer.SetPosition(1, reflectionDirection * 2000);
-                }
+
 
                 if (lastHit.tag.Contains("Prism"))
                 {
@@ -127,25 +107,13 @@ public class mirrorController : MonoBehaviour
                     {
                         lastHit.GetComponent<mirrorController>().numberOfInteractions--;
                     }
-                        
+
                 }
                 lastHit = hit.transform.gameObject;
             }
             if (true) //TODO performance improvement
             {
                 lineRenderer.SetPosition(0, transform.position);
-                //if (hit.transform.tag.Contains("Reflective"))
-                //{
-                //    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                //}
-                //else if (hit.transform.tag.Contains("goal"))
-                //{
-                //    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                //}
-                //else if (hit.transform.tag.Contains("nonInteractive"))
-                //{
-                //    lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                //}
                 if (hit)
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 else
@@ -171,6 +139,24 @@ public class mirrorController : MonoBehaviour
         }
 
 
+    }
+
+    private string colorToString()
+    {
+        string tmpColor = "white";
+        if (lightColor == Color.red)
+        {
+            tmpColor = "red";
+        }
+        else if (lightColor == Color.green)
+        {
+            tmpColor = "green";
+        }
+        else if (lightColor == Color.blue)
+        {
+            tmpColor = "blue";
+        }
+        return tmpColor;
     }
 
     private void delayAchievedGoal()

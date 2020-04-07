@@ -41,9 +41,11 @@ public class prismBeamController : MonoBehaviour
                 else if (hit.transform.tag.Contains("Prism"))
                 {
                     hit.transform.GetComponent<prismController>().sourceDirection = direction;
+                    hit.transform.GetComponent<prismController>().sourceColor = colorToString();
                 }
-                else if (hit.transform.tag.Contains("goal"))
+                else if (hit.transform.tag.Contains("Goal"))
                 {
+                    hit.transform.GetComponent<goalController>().sourceColor = colorToString();
                     Invoke("delayAchievedGoal", 0.2f);
                 }
 
@@ -112,6 +114,30 @@ public class prismBeamController : MonoBehaviour
                 break;
         }
     }
+
+    private string colorToString()
+    {
+        string tmpColor = "white";
+        if (lightColor == Color.red)
+        {
+            tmpColor = "red";
+        }
+        else if (lightColor == Color.green)
+        {
+            tmpColor = "green";
+        }
+        else if (lightColor == Color.blue)
+        {
+            tmpColor = "blue";
+        }
+        return tmpColor;
+    }
+
+    private void delayAchievedGoal()
+    {
+        if (lastHit.tag.Contains("Goal"))
+            lastHit.GetComponent<goalController>().goalAchieved();
+    }
     private void delayNextMirror()
     {
         if (lastHit.tag.Contains("Reflective"))
@@ -125,9 +151,4 @@ public class prismBeamController : MonoBehaviour
         }
     }
 
-    private void delayAchievedGoal()
-    {
-        if (lastHit.tag.Contains("goal"))
-            lastHit.GetComponent<goalController>().goalAchieved();
-    }
 }

@@ -58,20 +58,21 @@ public class lightController : MonoBehaviour
             lineRenderer.SetPosition(0, transform.position);
             if (hit.transform.tag.Contains("Reflective"))
             {
-                lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
                     hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
                 Invoke("delayNextMirror", 0.1f);
-                //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                //{
-                //    hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
-                //    hit.transform.GetComponent<mirrorController>().interaction = true;
-                //}
             }
-            else
+            else if (hit.transform.tag.Contains("Prism"))
             {
-                lineRenderer.SetPosition(1, lightDirection * 2000);
+                hit.transform.GetComponent<prismController>().sourceDirection = direction;
+                hit.transform.GetComponent<prismController>().sourceColor = colorToString();
             }
+            else if (hit.transform.tag.Contains("Goal"))
+            {
+                hit.transform.GetComponent<goalController>().sourceColor = colorToString();
+                Invoke("delayAchievedGoal", 0.2f);
+            }
+
             if (lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
@@ -98,6 +99,29 @@ public class lightController : MonoBehaviour
         lightColor = color;
         lineRenderer.startColor = lightColor;
         lineRenderer.endColor = lightColor;
+    }
+    private string colorToString()
+    {
+        string tmpColor = "white";
+        if (lightColor == Color.red)
+        {
+            tmpColor = "red";
+        }
+        else if (lightColor == Color.green)
+        {
+            tmpColor = "green";
+        }
+        else if (lightColor == Color.blue)
+        {
+            tmpColor = "blue";
+        }
+        return tmpColor;
+    }
+
+    private void delayAchievedGoal()
+    {
+        if (lastHit.tag.Contains("Goal"))
+            lastHit.GetComponent<goalController>().goalAchieved();
     }
     private void delayNextMirror()
     {

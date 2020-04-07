@@ -187,6 +187,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (ray.transform.tag.Contains("Prism"))
         {
+            ray.transform.GetComponent<prismController>().newPosition = true;
             switch (ray.transform.GetComponent<prismController>().direction)
             {
                 case "down":
