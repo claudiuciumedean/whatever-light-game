@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 187960060}
   - component: {fileID: 187960062}
   - component: {fileID: 187960059}
+  - component: {fileID: 187960063}
   m_Layer: 9
   m_Name: Mirror Pushable
   m_TagString: Reflective Pushable
@@ -663,6 +664,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &187960063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187960056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &202962791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1959,7 @@ GameObject:
   - component: {fileID: 1024248141}
   - component: {fileID: 1024248140}
   - component: {fileID: 1024248139}
+  - component: {fileID: 1024248145}
   m_Layer: 9
   m_Name: Mirror (1)
   m_TagString: Reflective Pushable
@@ -2187,6 +2201,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &1024248145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024248138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028033228
 GameObject:
   m_ObjectHideFlags: 0
