@@ -128,14 +128,50 @@ public class PlayerController : MonoBehaviour
     
     void rotateBox(RaycastHit2D ray)
     {
-        ray.transform.Rotate(0, 0, -90);
-        if (ray.transform.GetComponent<mirrorController>().corner < 4) 
+        //ray.transform.Rotate(0, 0, -90);
+        if (ray.transform.tag.Contains("Reflective"))
         {
-            ray.transform.GetComponent<mirrorController>().corner++;
+            switch (ray.transform.GetComponent<mirrorController>().corner)
+            {
+                case 1:
+                    ray.transform.GetComponent<mirrorController>().corner = 2;
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot2");
+                    break;
+                case 2:
+                    ray.transform.GetComponent<mirrorController>().corner = 3;
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot3");
+                    break;
+                case 3:
+                    ray.transform.GetComponent<mirrorController>().corner = 4;
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot4");
+                    break;
+                case 4:
+                    ray.transform.GetComponent<mirrorController>().corner = 1;
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot1");
+                    break;
+            }
         }
-        else
+        else if (ray.transform.tag.Contains("Prism"))
         {
-            ray.transform.GetComponent<mirrorController>().corner = 1;      
-        }
+            switch (ray.transform.GetComponent<prismController>().direction)
+            {
+                case "down":
+                    ray.transform.GetComponent<prismController>().direction = "left";
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_1");
+                    break;
+                case "up":
+                    ray.transform.GetComponent<prismController>().direction = "right";
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_3");
+                    break;
+                case "left":
+                    ray.transform.GetComponent<prismController>().direction = "up";
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_2");
+                    break;
+                case "right":
+                    ray.transform.GetComponent<prismController>().direction = "down";
+                    ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_4");
+                    break;
+            }
+        }    
     }
 }

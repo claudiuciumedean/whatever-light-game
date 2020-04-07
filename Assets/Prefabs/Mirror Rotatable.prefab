@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4302244202563517837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +100,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -166,10 +166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corner: 1
-  initialHit: {fileID: 0}
+  initialHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1,
+    type: 3}
   sourceDirection: 
   interaction: 0
-  lastHit: {fileID: 0}
+  lastHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1, type: 3}
   numberOfInteractions: 0
   reflection: 0
   direction: 
@@ -212,7 +213,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 50cf974537771de45b846b79ab830a10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0cf736cf7fb10b45a4952b8f219dd67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -249,7 +250,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: -0.2870345, y: -0.34668493}
-      - {x: 0.20295238, y: 0.15789044}
-      - {x: 0.5, y: 0.5}
+      - {x: -0.5, y: -0.4375}
+      - {x: -0.4375, y: -0.5}
+      - {x: 0.25, y: -0.5}
+      - {x: 0.4375, y: -0.3125}
+      - {x: 0.4375, y: 0.5}

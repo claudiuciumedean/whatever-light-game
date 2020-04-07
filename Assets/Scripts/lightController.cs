@@ -6,6 +6,7 @@ public class lightController : MonoBehaviour
 {
     public string direction;
     public GameObject initialHit;
+    public Color lightColor = Color.white;
 
     private LineRenderer lineRenderer;
     private Vector3 lightDirection;
@@ -17,6 +18,8 @@ public class lightController : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetPosition(0, transform.position);
         previousDirection = "none";
+        lineRenderer.startColor = lightColor;
+        lineRenderer.endColor = lightColor;
     }
 
     void Update()
@@ -90,6 +93,12 @@ public class lightController : MonoBehaviour
         }
     }
 
+    public void updateLightColor(Color color)
+    {
+        lightColor = color;
+        lineRenderer.startColor = lightColor;
+        lineRenderer.endColor = lightColor;
+    }
     private void delayNextMirror()
     {
         if (lastHit.tag.Contains("Reflective"))
@@ -97,6 +106,7 @@ public class lightController : MonoBehaviour
             if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
             {
                 lastHit.GetComponent<mirrorController>().sourceDirection = direction;
+                lastHit.GetComponent<mirrorController>().updateLightColor(lightColor);
                 lastHit.GetComponent<mirrorController>().interaction = true;
             }
         }

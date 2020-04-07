@@ -6,6 +6,8 @@ public class mirrorController : MonoBehaviour
 {
     public int corner;
     public GameObject initialHit;
+    public Color lightColor = Color.white;
+
 
     //[HideInInspector]
     public string sourceDirection;
@@ -21,8 +23,6 @@ public class mirrorController : MonoBehaviour
     private int previousCorner;
     private string previousSourceDirection;
     public string direction;
-    private Vector3 verticalDirection;
-    private Vector3 horizontalDirection;
     private Vector3 reflectionDirection;
     
 
@@ -37,6 +37,8 @@ public class mirrorController : MonoBehaviour
         sourceDirection = "none";
         previousSourceDirection = "none";
         direction = "none";
+        lineRenderer.startColor = lightColor;
+        lineRenderer.endColor = lightColor;
     }
 
     // Update is called once per frame
@@ -81,6 +83,10 @@ public class mirrorController : MonoBehaviour
                     //    hit.transform.GetComponent<mirrorController>().interaction = true;
                     //}
                 }
+                else if (hit.transform.tag.Contains("Prism"))
+                {
+                    hit.transform.GetComponent<prismController>().sourceDirection = direction;
+                }
                 else if(hit.transform.tag.Contains("goal"))
                 {
                     Invoke("delayAchievedGoal", 0.2f);
@@ -89,6 +95,12 @@ public class mirrorController : MonoBehaviour
                 {
                     //lineRenderer.SetPosition(1, reflectionDirection * 2000);
                 }
+
+                if (lastHit.tag.Contains("Prism"))
+                {
+                    lastHit.GetComponent<prismController>().sourceDirection = "none";
+                }
+
                 if (lastHit.tag.Contains("Reflective"))
                 {
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
@@ -156,9 +168,17 @@ public class mirrorController : MonoBehaviour
             if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2) 
             {       
                 lastHit.GetComponent<mirrorController>().sourceDirection = direction; 
+                lastHit.GetComponent<mirrorController>().updateLightColor(lightColor); 
                 lastHit.GetComponent<mirrorController>().interaction = true;
             }
         }
+    }
+
+    public void updateLightColor(Color color)
+    {
+        lightColor = color;
+        lineRenderer.startColor = lightColor;
+        lineRenderer.endColor = lightColor;
     }
 
     private bool sourceCornerCheck()

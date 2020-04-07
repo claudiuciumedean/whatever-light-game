@@ -11,6 +11,7 @@ TagManager:
   - Reflective
   - Reflective Pushable Rotatable
   - Reflective Rotatable
+  - Prism Pushable Rotatable
   layers:
   - Default
   - TransparentFX
