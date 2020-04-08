@@ -12,7 +12,7 @@ public class lightController : MonoBehaviour
     private Vector3 lightDirection;
     private string previousDirection;
 
-    GameObject lastHit;
+    public GameObject lastHit;
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -45,7 +45,25 @@ public class lightController : MonoBehaviour
             //lineRenderer.SetPosition(1, lastHit.transform.position);
             if (lastHit != null && lastHit.tag.Contains("Reflective"))
             {
-                lastHit.GetComponent<mirrorController>().interaction = false;
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                {
+                    lastHit.GetComponent<mirrorController>().interaction = false;
+                    lastHit.GetComponent<mirrorController>().sourceDirection = "none";
+
+                }
+                if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
+                {
+                    lastHit.GetComponent<mirrorController>().numberOfInteractions--;
+                }
+            }
+            if (lastHit.tag.Contains("Prism"))
+            {
+                if (lastHit.GetComponent<prismController>().sourceDirection == direction)
+                    lastHit.GetComponent<prismController>().sourceDirection = "none";
+            }
+            if (lastHit.tag.Contains("Crystal"))
+            {
+                lastHit.GetComponent<crystalController>().active = false;
             }
             lastHit = initialHit;
             previousDirection = direction;
@@ -58,13 +76,22 @@ public class lightController : MonoBehaviour
             lineRenderer.SetPosition(0, transform.position);
             if (hit.transform.tag.Contains("Reflective"))
             {
-                if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                    hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
+                //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                //    hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
                 Invoke("delayNextMirror", 0.1f);
             }
             else if (hit.transform.tag.Contains("Prism"))
             {
                 hit.transform.GetComponent<prismController>().changeSourceDir(direction, colorToString());
+                //hit.transform.GetComponent<prismController>().sourceColor = colorToString();
+            }
+            else if (hit.transform.tag.Contains("Crystal"))
+            {
+                if (hit.transform.GetComponent<crystalController>().lightColor == lightColor || lightColor == Color.white)
+                {
+                    hit.transform.GetComponent<crystalController>().updateBeam(direction);
+                    hit.transform.GetComponent<crystalController>().active = true;
+                }
                 //hit.transform.GetComponent<prismController>().sourceColor = colorToString();
             }
             else if (hit.transform.tag.Contains("Goal"))
@@ -78,11 +105,19 @@ public class lightController : MonoBehaviour
                 if (lastHit.GetComponent<prismController>().sourceDirection == direction)
                     lastHit.GetComponent<prismController>().sourceDirection = "none";
             }
+            if (lastHit.tag.Contains("Crystal"))
+            {
+                lastHit.GetComponent<crystalController>().active = false;
+            }
 
             if (lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                {
                     lastHit.GetComponent<mirrorController>().interaction = false;
+                    lastHit.GetComponent<mirrorController>().sourceDirection = "none";
+
+                }
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
                 {
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
@@ -133,12 +168,14 @@ public class lightController : MonoBehaviour
     {
         if (lastHit.tag.Contains("Reflective"))
         {
-            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2 && !lastHit.GetComponent<mirrorController>().reflection)
             {
                 lastHit.GetComponent<mirrorController>().sourceDirection = direction;
                 lastHit.GetComponent<mirrorController>().updateLightColor(lightColor);
                 lastHit.GetComponent<mirrorController>().interaction = true;
             }
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                lastHit.GetComponent<mirrorController>().numberOfInteractions++;
         }
     }
 

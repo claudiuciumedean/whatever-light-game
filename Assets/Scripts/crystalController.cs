@@ -2,23 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class prismBeamController : MonoBehaviour
+public class crystalController : MonoBehaviour
 {
     public GameObject initialHit;
     public GameObject lastHit;
     public Color lightColor;
+    public string KRYSTAL_TYPE;
     public string direction;
     public bool active;
 
     private LineRenderer lineRenderer;
-    private Vector3 lightDirection;
-    
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 lightDirection; void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lightDirection = Vector3.up;
         active = false;
+        switch (KRYSTAL_TYPE)
+        {
+            case "red":
+                lightColor = Color.red;
+                GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Krystal_Red");
+                break;
+            case "green":
+                lightColor = Color.green;
+                GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Krystal_Green");
+                break;
+            case "blue":
+                lightColor = Color.blue;
+                GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Krystal_Blue");
+                break;
+        }
+        lineRenderer.startColor = lightColor;
+        lineRenderer.endColor = lightColor;
+
     }
 
     // Update is called once per frame
@@ -27,7 +42,7 @@ public class prismBeamController : MonoBehaviour
         if (active)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position + lightDirection / 100, lightDirection);
-
+            lineRenderer.enabled = true;
             if (hit.transform.position != lastHit.transform.position)
             {
                 lineRenderer.SetPosition(0, transform.position);
@@ -64,6 +79,10 @@ public class prismBeamController : MonoBehaviour
                     if (lastHit.GetComponent<prismController>().sourceDirection == direction)
                         lastHit.GetComponent<prismController>().sourceDirection = "none";
                 }
+                if (lastHit.tag.Contains("Crystal"))
+                {
+                    hit.transform.GetComponent<crystalController>().active = false;
+                }
                 if (lastHit.tag.Contains("Reflective"))
                 {
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
@@ -90,6 +109,7 @@ public class prismBeamController : MonoBehaviour
         }
         else
         {   //reset
+            lineRenderer.enabled = false;
             if (lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
@@ -118,14 +138,11 @@ public class prismBeamController : MonoBehaviour
 
     }
 
-    public void updateBeam(Color color, string dir)
+    public void updateBeam(string sourceDir)
     {
-        direction = dir;
-        lightColor = color;
-        lineRenderer.startColor = lightColor;
-        lineRenderer.endColor = lightColor;
+        direction = sourceDir;
 
-        switch (direction)
+        switch (direction) 
         {
             case "up":
                 lightDirection = new Vector3(0, 1, 0);
@@ -142,7 +159,7 @@ public class prismBeamController : MonoBehaviour
         }
     }
 
-    private string colorToString()
+    public string colorToString()
     {
         string tmpColor = "white";
         if (lightColor == Color.red)
@@ -169,14 +186,12 @@ public class prismBeamController : MonoBehaviour
     {
         if (lastHit.tag.Contains("Reflective"))
         {
-            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2 && !lastHit.GetComponent<mirrorController>().reflection)
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
             {
                 lastHit.GetComponent<mirrorController>().sourceDirection = direction;
                 lastHit.GetComponent<mirrorController>().updateLightColor(lightColor);
                 lastHit.GetComponent<mirrorController>().interaction = true;
             }
-            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
-                lastHit.GetComponent<mirrorController>().numberOfInteractions++;
         }
     }
 

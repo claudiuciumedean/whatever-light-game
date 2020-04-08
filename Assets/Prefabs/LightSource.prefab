@@ -147,6 +147,7 @@ MonoBehaviour:
   initialHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1,
     type: 3}
   lightColor: {r: 1, g: 1, b: 1, a: 1}
+  lastHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1, type: 3}
 --- !u!212 &724104063414020933
 SpriteRenderer:
   m_ObjectHideFlags: 0

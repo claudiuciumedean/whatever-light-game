@@ -172,9 +172,11 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1, type: 3}
+  type: rotatable
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
+  previousSourceDirection: 
   direction: 
 --- !u!212 &4302244202563517839
 SpriteRenderer:

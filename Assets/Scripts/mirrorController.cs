@@ -15,7 +15,7 @@ public class mirrorController : MonoBehaviour
     public bool interaction;
     //[HideInInspector]
     public GameObject lastHit;
-
+    public string type;
 
     public int numberOfInteractions;
     public bool reflection;
@@ -76,6 +76,10 @@ public class mirrorController : MonoBehaviour
                 if (lastHit.GetComponent<prismController>().sourceDirection == direction)
                     lastHit.GetComponent<prismController>().sourceDirection = "none";
             }
+            if (lastHit.tag.Contains("Crystal"))
+            {
+                lastHit.GetComponent<crystalController>().active = false;
+            }
             lastHit = initialHit;
             previousSourceDirection = sourceDirection;
             previousCorner = corner;
@@ -101,6 +105,15 @@ public class mirrorController : MonoBehaviour
                     hit.transform.GetComponent<prismController>().changeSourceDir(direction, colorToString());
                     //hit.transform.GetComponent<prismController>().sourceColor = colorToString();
                 }
+                else if (hit.transform.tag.Contains("Crystal"))
+                {
+                    if (hit.transform.GetComponent<crystalController>().lightColor == lightColor || lightColor == Color.white)
+                    {
+                        hit.transform.GetComponent<crystalController>().updateBeam(direction);
+                        hit.transform.GetComponent<crystalController>().active = true;
+                    }
+                    //hit.transform.GetComponent<prismController>().sourceColor = colorToString();
+                }
                 else if (hit.transform.tag.Contains("Goal"))
                 {
                     hit.transform.GetComponent<goalController>().sourceColor = colorToString();
@@ -112,6 +125,10 @@ public class mirrorController : MonoBehaviour
                 {
                     if (lastHit.GetComponent<prismController>().sourceDirection == direction)
                         lastHit.GetComponent<prismController>().sourceDirection = "none";
+                }
+                if (lastHit.tag.Contains("Crystal"))
+                {
+                    hit.transform.GetComponent<crystalController>().active = false;
                 }
 
                 if (lastHit.tag.Contains("Reflective"))
@@ -169,6 +186,15 @@ public class mirrorController : MonoBehaviour
                 }
 
             }
+            if (lastHit.tag.Contains("Prism"))
+            {
+                if (lastHit.GetComponent<prismController>().sourceDirection == direction)
+                    lastHit.GetComponent<prismController>().sourceDirection = "none";
+            }
+            if (lastHit.tag.Contains("Crystal"))
+            {
+                lastHit.GetComponent<crystalController>().active = false;
+            }
             lastHit = initialHit;
             //sourceDirection = "none";
             if (lineRenderer.enabled)
@@ -183,18 +209,34 @@ public class mirrorController : MonoBehaviour
         switch (corner)
         {
             case 1:
+                if (type == "pushable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_move1");
+                if (type == "rotatable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot1");
                 GetComponent<BoxCollider2D>().offset = new Vector2(-0.1f, 0.14f);
                 GetComponent<BoxCollider2D>().size = new Vector2(0.42f, 0.58f);
                 break;
             case 2:
+                if (type == "pushable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_move2");
+                if (type == "rotatable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot2");
                 GetComponent<BoxCollider2D>().offset = new Vector2(0.12f, 0.14f);
                 GetComponent<BoxCollider2D>().size = new Vector2(0.35f, 0.58f);
                 break;
             case 3:
+                if (type == "pushable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_move3");
+                if (type == "rotatable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot3");
                 GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.0f);
                 GetComponent<BoxCollider2D>().size = new Vector2(0.62f, 0.85f);
                 break;
             case 4:
+                if (type == "pushable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_move4");
+                if (type == "rotatable")
+                    GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Mirror_rot4");
                 GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.0f);
                 GetComponent<BoxCollider2D>().size = new Vector2(0.62f, 0.85f);
                 break;
