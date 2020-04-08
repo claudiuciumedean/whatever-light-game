@@ -174,6 +174,7 @@ MonoBehaviour:
   lastHit: {fileID: 4795623872721836277, guid: a23fc88ea9c5dea4cbf0c43e3a6b39b1, type: 3}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!212 &4302244202563517839
 SpriteRenderer:
@@ -249,5 +250,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0

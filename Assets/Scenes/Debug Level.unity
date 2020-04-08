@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 724104063414020932, guid: 8b0b9f2005607df43abcaab4696acb76,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 724104063414020932, guid: 8b0b9f2005607df43abcaab4696acb76,
         type: 3}
@@ -447,6 +447,7 @@ MonoBehaviour:
   lastHit: {fileID: 2019329368}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!120 &173158612
 LineRenderer:
@@ -780,6 +781,7 @@ MonoBehaviour:
   lastHit: {fileID: 2019329368}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!120 &229391541
 LineRenderer:
@@ -1084,7 +1086,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2590053999316475270, guid: 58d0626323f8119428a94d289b2cf439,
         type: 3}
       propertyPath: m_Sprite
@@ -1478,6 +1480,7 @@ MonoBehaviour:
   lastHit: {fileID: 2019329368}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!120 &688687992
 LineRenderer:
@@ -3349,6 +3352,7 @@ MonoBehaviour:
   lastHit: {fileID: 2019329368}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!120 &1520748958
 LineRenderer:
@@ -4686,6 +4690,7 @@ MonoBehaviour:
   lastHit: {fileID: 2019329368}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!120 &1786282926
 LineRenderer:
@@ -4989,6 +4994,7 @@ MonoBehaviour:
   lastHit: {fileID: 2019329368}
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
   direction: 
 --- !u!120 &1750114628660145481
 LineRenderer:

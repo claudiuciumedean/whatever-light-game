@@ -98,27 +98,37 @@ public class prismController : MonoBehaviour
                 blueLight.transform.localPosition = new Vector3(-0.25f, -0.12f, 0.0f);
                 break;
             case "down":
-                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0f);
-                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.2f, 0.5f);
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.13f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.4f, 0.66f);
                 redLight.transform.localPosition = new Vector3(0.2f,0.0f,0.0f);
                 greenLight.transform.localPosition = new Vector3(0.0f,0.45f,0.0f);
                 blueLight.transform.localPosition = new Vector3(-0.2f,0.0f,0.0f);
                 break;
             case "right":
-                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.04f, -0.0f);
-                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.2f);
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.015f, 0.16f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.52f);
                 redLight.transform.localPosition = new Vector3(0.0f, -0.15f, 0.0f);
                 greenLight.transform.localPosition = new Vector3(-0.189f, -0.1f, 0.0f);
                 blueLight.transform.localPosition = new Vector3(0.0f, 0.4f, 0.0f);
                 break;
             case "left":
-                transform.GetComponent<BoxCollider2D>().offset = new Vector2(-0.026f, 0.0f);
-                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.28f, 0.2f);
+                transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.17f);
+                transform.GetComponent<BoxCollider2D>().size = new Vector2(0.31f, 0.54f);
                 redLight.transform.localPosition = new Vector3(0.0f, 0.4f, 0.0f);
                 greenLight.transform.localPosition = new Vector3(0.19f, -0.05f, 0.0f);
                 blueLight.transform.localPosition = new Vector3(0f, -0.2f, 0.0f);
                 break;
         }
+    }
+
+    public void changeSourceDir(string newSourceDir, string newsourceColor)
+    {
+        if (!activationCheck())
+        {
+            sourceDirection = newSourceDir;
+            sourceColor = newsourceColor;
+        }
+            
     }
 
     bool activationCheck()

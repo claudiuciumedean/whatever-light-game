@@ -40,8 +40,8 @@ public class prismBeamController : MonoBehaviour
                 }
                 else if (hit.transform.tag.Contains("Prism"))
                 {
-                    hit.transform.GetComponent<prismController>().sourceDirection = direction;
-                    hit.transform.GetComponent<prismController>().sourceColor = colorToString();
+                    hit.transform.GetComponent<prismController>().changeSourceDir(direction, colorToString());
+                    //hit.transform.GetComponent<prismController>().sourceColor = colorToString();
                 }
                 else if (hit.transform.tag.Contains("Goal"))
                 {
@@ -52,7 +52,8 @@ public class prismBeamController : MonoBehaviour
 
                 if (lastHit.tag.Contains("Prism"))
                 {
-                    lastHit.GetComponent<prismController>().sourceDirection = "none";
+                    if (lastHit.GetComponent<prismController>().sourceDirection == direction)
+                        lastHit.GetComponent<prismController>().sourceDirection = "none";
                 }
                 if (lastHit.tag.Contains("Reflective"))
                 {

@@ -162,9 +162,9 @@ public class PlayerController : MonoBehaviour
     
     void rotateBox(RaycastHit2D ray)
     {
-        //ray.transform.Rotate(0, 0, -90);
         if (ray.transform.tag.Contains("Reflective"))
         {
+            ray.transform.GetComponent<mirrorController>().newPosition = true;
             switch (ray.transform.GetComponent<mirrorController>().corner)
             {
                 case 1:

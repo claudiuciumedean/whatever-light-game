@@ -19,9 +19,10 @@ public class mirrorController : MonoBehaviour
 
     public int numberOfInteractions;
     public bool reflection;
+    public bool newPosition;
     private LineRenderer lineRenderer;
     private int previousCorner;
-    private string previousSourceDirection;
+    public string previousSourceDirection;
     public string direction;
     private Vector3 reflectionDirection;
 
@@ -39,11 +40,19 @@ public class mirrorController : MonoBehaviour
         direction = "none";
         lineRenderer.startColor = lightColor;
         lineRenderer.endColor = lightColor;
+        newPosition = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (newPosition)
+        {
+            updatePOsition();
+            newPosition = false;
+        }
+
+
         if ((corner != previousCorner) || (sourceDirection != previousSourceDirection))
         {
 
@@ -52,7 +61,11 @@ public class mirrorController : MonoBehaviour
             if (lastHit != null && lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                {
                     lastHit.GetComponent<mirrorController>().interaction = false;
+                    lastHit.GetComponent<mirrorController>().sourceDirection = "none";
+
+                }
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
                 {
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
@@ -60,7 +73,8 @@ public class mirrorController : MonoBehaviour
             }
             if (lastHit.tag.Contains("Prism"))
             {
-                lastHit.GetComponent<prismController>().sourceDirection = "none";
+                if (lastHit.GetComponent<prismController>().sourceDirection == direction)
+                    lastHit.GetComponent<prismController>().sourceDirection = "none";
             }
             lastHit = initialHit;
             previousSourceDirection = sourceDirection;
@@ -78,14 +92,14 @@ public class mirrorController : MonoBehaviour
                 if (hit.transform.tag.Contains("Reflective"))
                 {
                     //lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                    if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                        hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
+                    //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    //    hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
                     Invoke("delayNextMirror", 0.1f);
                 }
                 else if (hit.transform.tag.Contains("Prism"))
                 {
-                    hit.transform.GetComponent<prismController>().sourceDirection = direction;
-                    hit.transform.GetComponent<prismController>().sourceColor = colorToString();
+                    hit.transform.GetComponent<prismController>().changeSourceDir(direction, colorToString());
+                    //hit.transform.GetComponent<prismController>().sourceColor = colorToString();
                 }
                 else if (hit.transform.tag.Contains("Goal"))
                 {
@@ -96,13 +110,18 @@ public class mirrorController : MonoBehaviour
 
                 if (lastHit.tag.Contains("Prism"))
                 {
-                    lastHit.GetComponent<prismController>().sourceDirection = "none";
+                    if (lastHit.GetComponent<prismController>().sourceDirection == direction)
+                        lastHit.GetComponent<prismController>().sourceDirection = "none";
                 }
 
                 if (lastHit.tag.Contains("Reflective"))
                 {
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                    {
                         lastHit.GetComponent<mirrorController>().interaction = false;
+                        lastHit.GetComponent<mirrorController>().sourceDirection = "none";
+
+                    }
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
                     {
                         lastHit.GetComponent<mirrorController>().numberOfInteractions--;
@@ -113,7 +132,21 @@ public class mirrorController : MonoBehaviour
             }
             if (true) //TODO performance improvement
             {
-                lineRenderer.SetPosition(0, transform.position);
+                switch (corner)
+                {
+                    case 1:
+                        lineRenderer.SetPosition(0, transform.position);
+                        break;
+                    case 2:
+                        lineRenderer.SetPosition(0, transform.position);
+                        break;
+                    case 3:
+                        lineRenderer.SetPosition(0, transform.position + reflectionDirection/3);
+                        break;
+                    case 4:
+                        lineRenderer.SetPosition(0, transform.position + reflectionDirection/3);
+                        break;
+                }
                 if (hit)
                     lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
                 else
@@ -125,7 +158,11 @@ public class mirrorController : MonoBehaviour
             if (lastHit.tag.Contains("Reflective"))
             {
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                {
                     lastHit.GetComponent<mirrorController>().interaction = false;
+                    lastHit.GetComponent<mirrorController>().sourceDirection = "none";
+
+                }
                 if (lastHit.GetComponent<mirrorController>().numberOfInteractions > 0)
                 {
                     lastHit.GetComponent<mirrorController>().numberOfInteractions--;
@@ -139,6 +176,29 @@ public class mirrorController : MonoBehaviour
         }
 
 
+    }
+
+    public void updatePOsition()
+    {
+        switch (corner)
+        {
+            case 1:
+                GetComponent<BoxCollider2D>().offset = new Vector2(-0.1f, 0.14f);
+                GetComponent<BoxCollider2D>().size = new Vector2(0.42f, 0.58f);
+                break;
+            case 2:
+                GetComponent<BoxCollider2D>().offset = new Vector2(0.12f, 0.14f);
+                GetComponent<BoxCollider2D>().size = new Vector2(0.35f, 0.58f);
+                break;
+            case 3:
+                GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.0f);
+                GetComponent<BoxCollider2D>().size = new Vector2(0.62f, 0.85f);
+                break;
+            case 4:
+                GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.0f);
+                GetComponent<BoxCollider2D>().size = new Vector2(0.62f, 0.85f);
+                break;
+        }
     }
 
     private string colorToString()
@@ -169,12 +229,14 @@ public class mirrorController : MonoBehaviour
     {
         if (lastHit.tag.Contains("Reflective"))
         {
-            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2) 
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2 && !lastHit.GetComponent<mirrorController>().reflection) 
             {       
                 lastHit.GetComponent<mirrorController>().sourceDirection = direction; 
                 lastHit.GetComponent<mirrorController>().updateLightColor(lightColor); 
                 lastHit.GetComponent<mirrorController>().interaction = true;
             }
+            if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)
+                lastHit.GetComponent<mirrorController>().numberOfInteractions++;
         }
     }
 
