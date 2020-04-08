@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMenuHandler : MonoBehaviour
 {
     public GameObject pausePanel;
+    int count = 0;
 
     public void pauseGame() {
         pausePanel.SetActive(true);
