@@ -671,6 +671,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 75250732749942729, guid: 6f02937d06e853e4ea04738d7a113bc8,
+        type: 3}
+      propertyPath: levelCompletePanel
+      value: 
+      objectReference: {fileID: 867240342}
     - target: {fileID: 75250732749942732, guid: 6f02937d06e853e4ea04738d7a113bc8,
         type: 3}
       propertyPath: m_Name
@@ -1012,6 +1017,12 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &867240342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 789026068294058529, guid: 30786969c30aec64986f153f70db8052,
+    type: 3}
+  m_PrefabInstance: {fileID: 1036781869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &891041593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1354,6 +1365,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 75250732749942729, guid: c66c58ffd3a20a349ade98ca3e375ec3,
+        type: 3}
+      propertyPath: levelCompletePanel
+      value: 
+      objectReference: {fileID: 867240342}
     - target: {fileID: 75250732749942732, guid: c66c58ffd3a20a349ade98ca3e375ec3,
         type: 3}
       propertyPath: m_Name
@@ -1423,6 +1439,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 75250732749942729, guid: 17b9d85f3b5ba7e49a674e601ff00f0d,
+        type: 3}
+      propertyPath: levelCompletePanel
+      value: 
+      objectReference: {fileID: 867240342}
     - target: {fileID: 75250732749942732, guid: 17b9d85f3b5ba7e49a674e601ff00f0d,
         type: 3}
       propertyPath: m_Name
@@ -2730,6 +2751,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3850845520080359209, guid: 62c5403fad0b0e344b090e954a85380a,
+        type: 3}
+      propertyPath: rotateWoodSound
+      value: 
+      objectReference: {fileID: 1906018104}
+    - target: {fileID: 3850845520080359209, guid: 62c5403fad0b0e344b090e954a85380a,
+        type: 3}
+      propertyPath: rotateKrystalSound
+      value: 
+      objectReference: {fileID: 1906018103}
     - target: {fileID: 3850845520080359210, guid: 62c5403fad0b0e344b090e954a85380a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5646,6 +5677,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1906018103 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -7536300071185949880, guid: 62c5403fad0b0e344b090e954a85380a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138872218}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1906018104 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -7970041956335353514, guid: 62c5403fad0b0e344b090e954a85380a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138872218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2061939761
 PrefabInstance:
   m_ObjectHideFlags: 0

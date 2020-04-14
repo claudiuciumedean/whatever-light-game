@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource walkingSound;
     public AudioSource pushSound;
-    public AudioSource rotateSound;
+    public AudioSource rotateWoodSound;
+    public AudioSource rotateKrystalSound;
 
     public Transform movePoint;
     public LayerMask stopsMovement;
@@ -154,9 +155,9 @@ public class PlayerController : MonoBehaviour
     
     void rotateBox(RaycastHit2D ray)
     {
-        rotateSound.Play();
         if (ray.transform.tag.Contains("Reflective"))
         {
+            rotateWoodSound.Play();
             ray.transform.GetComponent<mirrorController>().newPosition = true;
             switch (ray.transform.GetComponent<mirrorController>().corner)
             {
@@ -180,6 +181,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (ray.transform.tag.Contains("Prism"))
         {
+            rotateKrystalSound.Play();
             ray.transform.GetComponent<prismController>().newPosition = true;
             switch (ray.transform.GetComponent<prismController>().direction)
             {
