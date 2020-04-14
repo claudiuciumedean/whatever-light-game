@@ -36,21 +36,21 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D leftRay = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, distance, boxMask);
         RaycastHit2D rightRay = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, boxMask);
 
-        if (Input.GetKeyDown(KeyCode.Space) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable")) 
+        if (Input.GetKeyDown(KeyCode.Space) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(rightRay);
         }
-            
-        if (Input.GetKeyDown(KeyCode.Space) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable")) 
+
+        if (Input.GetKeyDown(KeyCode.Space) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(leftRay);
         }
-            
+
         if (Input.GetKeyDown(KeyCode.Space) && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(upRay);
         }
-            
+
         if (Input.GetKeyDown(KeyCode.Space) && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(downRay);
@@ -66,9 +66,11 @@ public class PlayerController : MonoBehaviour
                     movePoint.position += xPos;
                     this.state.Push(xPos);
 
-                    if(Input.GetAxisRaw("Horizontal") == 1 && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Pushable")) {
+                    if (Input.GetAxisRaw("Horizontal") == 1 && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Pushable"))
+                    {
                         Vector3 xPos_Right = rightRay.collider.gameObject.transform.position + xPos;
-                        if(!Physics2D.OverlapCircle(xPos_Right, .2f, stopsMovement) && !Physics2D.OverlapCircle(xPos_Right, .2f, interactive)) {
+                        if (!Physics2D.OverlapCircle(xPos_Right, .2f, stopsMovement) && !Physics2D.OverlapCircle(xPos_Right, .2f, interactive))
+                        {
                             this.pushBox(rightRay, xPos);
                         }
                         else
@@ -76,10 +78,11 @@ public class PlayerController : MonoBehaviour
                             movePoint.position -= xPos;
                         }
                     }
-                    else if(Input.GetAxisRaw("Horizontal") == -1 && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Pushable"))
+                    else if (Input.GetAxisRaw("Horizontal") == -1 && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Pushable"))
                     {
                         Vector3 yPos_Left = leftRay.collider.gameObject.transform.position + xPos;
-                        if(!Physics2D.OverlapCircle(yPos_Left, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Left, .2f, interactive)) {
+                        if (!Physics2D.OverlapCircle(yPos_Left, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Left, .2f, interactive))
+                        {
                             this.pushBox(leftRay, xPos);
                         }
                         else
@@ -93,15 +96,17 @@ public class PlayerController : MonoBehaviour
             {
 
                 Vector3 yPos = new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-                
+
                 if (!Physics2D.OverlapCircle(movePoint.position + yPos, .2f, stopsMovement))
                 {
                     movePoint.position += yPos;
                     this.state.Push(yPos);
 
-                    if(Input.GetAxisRaw("Vertical") == 1 && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Pushable")) {
+                    if (Input.GetAxisRaw("Vertical") == 1 && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Pushable"))
+                    {
                         Vector3 yPos_Up = upRay.collider.gameObject.transform.position + yPos;
-                        if(!Physics2D.OverlapCircle(yPos_Up, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Up, .2f, interactive)) {
+                        if (!Physics2D.OverlapCircle(yPos_Up, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Up, .2f, interactive))
+                        {
                             this.pushBox(upRay, yPos);
                         }
                         else
@@ -109,10 +114,11 @@ public class PlayerController : MonoBehaviour
                             movePoint.position -= yPos;
                         }
                     }
-                    else if(Input.GetAxisRaw("Vertical") == -1 && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Pushable"))
+                    else if (Input.GetAxisRaw("Vertical") == -1 && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Pushable"))
                     {
                         Vector3 yPos_Down = downRay.collider.gameObject.transform.position + yPos;
-                        if(!Physics2D.OverlapCircle(yPos_Down, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Down, .2f, interactive)) {
+                        if (!Physics2D.OverlapCircle(yPos_Down, .2f, stopsMovement) && !Physics2D.OverlapCircle(yPos_Down, .2f, interactive))
+                        {
                             this.pushBox(downRay, yPos);
                         }
                         else
@@ -133,26 +139,26 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnDrawGizmos()
-	{
+    {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.up * transform.localScale.y * distance);
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.down * transform.localScale.y * distance);
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * distance);
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.left * transform.localScale.x * distance);
-	}
+    }
 
     void pushBox(RaycastHit2D ray, Vector3 position)
-    {       
+    {
         box = ray.collider.gameObject;
         lastInteracted = box;
-        pushSound.Play();
-        //box.transform.position += position;
-        box.GetComponent<pushingScript>().movePoint = box.transform.position + position;
+        Vector3 newPosition = box.transform.position + position;
+        StateManager stateManager = (StateManager)box.GetComponent(typeof(StateManager));
 
-        StateManager stateManager = (StateManager) box.GetComponent(typeof(StateManager));
-        stateManager.pushNewState(position);  
+        pushSound.Play();
+        stateManager.pushNewState(box.transform.position);
+        box.GetComponent<pushingScript>().movePoint = newPosition;
     }
-    
+
     void rotateBox(RaycastHit2D ray)
     {
         if (ray.transform.tag.Contains("Reflective"))
@@ -202,24 +208,26 @@ public class PlayerController : MonoBehaviour
                     ray.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Prism_rot_4");
                     break;
             }
-        }    
+        }
     }
 
-    public void undoMove() {
-        if (lastInteracted != null) 
-        {    
-            StateManager stateManager = (StateManager) lastInteracted.GetComponent(typeof(StateManager));
-            if(!stateManager.isStateEmpty()) {
-                Vector3 lastInteractedState =  stateManager.getLastState();
+    public void undoMove()
+    {
+        if (lastInteracted != null)
+        {
+            StateManager stateManager = (StateManager)lastInteracted.GetComponent(typeof(StateManager));
+            if (!stateManager.isStateEmpty())
+            {
+                Vector3 lastInteractedState = stateManager.getLastState();
                 pushSound.Play();
-                lastInteracted.transform.position -= lastInteractedState;
-                
-                if(this.state.Count > 0 && this.state.Peek() == lastInteractedState) 
+                box.GetComponent<pushingScript>().movePoint = lastInteractedState;
+
+                if (this.state.Count > 0)
                 {
                     Vector3 playerLastState = this.state.Pop();
                     movePoint.position -= playerLastState;
                 }
-            }        
+            }
         }
     }
 }
