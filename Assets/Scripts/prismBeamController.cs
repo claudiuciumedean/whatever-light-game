@@ -64,6 +64,10 @@ public class prismBeamController : MonoBehaviour
                     if (lastHit.GetComponent<prismController>().sourceDirection == direction)
                         lastHit.GetComponent<prismController>().sourceDirection = "none";
                 }
+                if (lastHit.tag.Contains("Crystal"))
+                {
+                    lastHit.GetComponent<crystalController>().active = false;
+                }
                 if (lastHit.tag.Contains("Reflective"))
                 {
                     if (lastHit.GetComponent<mirrorController>().numberOfInteractions < 2)

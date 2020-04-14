@@ -81,7 +81,7 @@ public class crystalController : MonoBehaviour
                 }
                 if (lastHit.tag.Contains("Crystal"))
                 {
-                    hit.transform.GetComponent<crystalController>().active = false;
+                    lastHit.GetComponent<crystalController>().active = false;
                 }
                 if (lastHit.tag.Contains("Reflective"))
                 {

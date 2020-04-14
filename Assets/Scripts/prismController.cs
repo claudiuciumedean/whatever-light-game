@@ -100,9 +100,9 @@ public class prismController : MonoBehaviour
             case "down":
                 transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, 0.13f);
                 transform.GetComponent<BoxCollider2D>().size = new Vector2(0.4f, 0.66f);
-                redLight.transform.localPosition = new Vector3(0.2f,0.0f,0.0f);
+                redLight.transform.localPosition = new Vector3(-0.2f, 0.0f, 0.0f);
                 greenLight.transform.localPosition = new Vector3(0.0f,0.45f,0.0f);
-                blueLight.transform.localPosition = new Vector3(-0.2f,0.0f,0.0f);
+                blueLight.transform.localPosition = new Vector3(0.2f, 0.0f, 0.0f);
                 break;
             case "right":
                 transform.GetComponent<BoxCollider2D>().offset = new Vector2(0.015f, 0.16f);
@@ -142,9 +142,9 @@ public class prismController : MonoBehaviour
         }
         else if (direction.Equals("down") && sourceDirection.Equals("up"))
         {
-            redDir = "right";
+            redDir = "left";
             greenDir = "up";
-            blueDir = "left";
+            blueDir = "right";
             return true;
         }
         else if (direction.Equals("right") && sourceDirection.Equals("left"))

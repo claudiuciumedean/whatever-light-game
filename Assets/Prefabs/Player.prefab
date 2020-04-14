@@ -73,7 +73,8 @@ MonoBehaviour:
   distance: 1
   walkingSound: {fileID: 6328120204194593484}
   pushSound: {fileID: -3261845585903460871}
-  rotateSound: {fileID: -7970041956335353514}
+  rotateWoodSound: {fileID: -7970041956335353514}
+  rotateKrystalSound: {fileID: -7536300071185949880}
   movePoint: {fileID: 3850845521983171346}
   stopsMovement:
     serializedVersion: 2
