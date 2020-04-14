@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    List<int> levelsIdx = new List<int> { 2, 3, 4, 5, 6};
+    List<int> levelsIdx = new List<int> { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
     int currentLevel;
 
     void Start() {
