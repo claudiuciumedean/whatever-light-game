@@ -8,6 +8,10 @@ public class GameManager : Singleton<GameManager>
     List<int> levelsIdx = new List<int> { 2, 3, 4, 5, 6};
     int currentLevel;
 
+    void Start() {
+        Screen.SetResolution(200, 200, true);
+    }
+
     public void showStartMenuPanel() {
         SceneManager.LoadScene("StartMenuScene");
     }
