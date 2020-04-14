@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource walkingSound;
     public AudioSource pushSound;
+    public AudioSource rotateSound;
 
     public Transform movePoint;
     public LayerMask stopsMovement;
@@ -153,6 +154,7 @@ public class PlayerController : MonoBehaviour
     
     void rotateBox(RaycastHit2D ray)
     {
+        rotateSound.Play();
         if (ray.transform.tag.Contains("Reflective"))
         {
             ray.transform.GetComponent<mirrorController>().newPosition = true;

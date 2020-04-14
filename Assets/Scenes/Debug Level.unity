@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 173158610}
   - component: {fileID: 173158609}
   - component: {fileID: 173158615}
+  - component: {fileID: 173158616}
   m_Layer: 9
   m_Name: Mirror Debug (4)
   m_TagString: Reflective Pushable Rotatable
@@ -445,6 +446,7 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 2019329368}
+  type: 
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
@@ -594,6 +596,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &173158616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173158608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720e35047aab174abb8ea8a8f1cecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  movePoint: {x: 0, y: 0, z: 0}
 --- !u!1001 &180117997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -678,6 +694,7 @@ GameObject:
   - component: {fileID: 229391539}
   - component: {fileID: 229391538}
   - component: {fileID: 229391544}
+  - component: {fileID: 229391545}
   m_Layer: 9
   m_Name: Mirror Debug (3)
   m_TagString: Reflective Pushable Rotatable
@@ -780,6 +797,7 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 2019329368}
+  type: 
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
@@ -929,6 +947,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &229391545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229391537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720e35047aab174abb8ea8a8f1cecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  movePoint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +986,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1378,6 +1410,7 @@ GameObject:
   - component: {fileID: 688687990}
   - component: {fileID: 688687989}
   - component: {fileID: 688687995}
+  - component: {fileID: 688687996}
   m_Layer: 9
   m_Name: Mirror Debug (1)
   m_TagString: Reflective Pushable Rotatable
@@ -1480,6 +1513,7 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 2019329368}
+  type: 
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
@@ -1629,6 +1663,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &688687996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688687988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720e35047aab174abb8ea8a8f1cecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  movePoint: {x: 0, y: 0, z: 0}
 --- !u!1001 &772574402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3167,7 +3215,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelCompletePanel
       value: 
-      objectReference: {fileID: 1350379545}
+      objectReference: {fileID: 0}
     - target: {fileID: 75250732749942732, guid: 8b76cddaddf73f0408bfb88510a6c124,
         type: 3}
       propertyPath: m_Name
@@ -3230,12 +3278,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b76cddaddf73f0408bfb88510a6c124, type: 3}
---- !u!1 &1350379545 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4928381978181219836, guid: 30786969c30aec64986f153f70db8052,
-    type: 3}
-  m_PrefabInstance: {fileID: 4928381978480079537}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1520748954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,6 +3293,7 @@ GameObject:
   - component: {fileID: 1520748956}
   - component: {fileID: 1520748955}
   - component: {fileID: 1520748961}
+  - component: {fileID: 1520748962}
   m_Layer: 9
   m_Name: Mirror Debug (2)
   m_TagString: Reflective Pushable Rotatable
@@ -3353,6 +3396,7 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 2019329368}
+  type: 
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
@@ -3502,6 +3546,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1520748962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520748954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720e35047aab174abb8ea8a8f1cecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  movePoint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542915827
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,6 +4648,7 @@ GameObject:
   - component: {fileID: 1786282924}
   - component: {fileID: 1786282923}
   - component: {fileID: 1786282929}
+  - component: {fileID: 1786282930}
   m_Layer: 9
   m_Name: Mirror Debug (5)
   m_TagString: Reflective Pushable Rotatable
@@ -4692,6 +4751,7 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 2019329368}
+  type: 
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
@@ -4841,6 +4901,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1786282930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786282922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720e35047aab174abb8ea8a8f1cecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  movePoint: {x: 0, y: 0, z: 0}
 --- !u!1 &1868102404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,6 +5071,7 @@ MonoBehaviour:
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 2019329368}
+  type: 
   numberOfInteractions: 0
   reflection: 0
   newPosition: 0
@@ -5164,6 +5239,7 @@ GameObject:
   - component: {fileID: 1750114628660145482}
   - component: {fileID: 1750114628660145487}
   - component: {fileID: 1750114628660145488}
+  - component: {fileID: 1750114628660145489}
   m_Layer: 9
   m_Name: Mirror Debug
   m_TagString: Reflective Pushable Rotatable
@@ -5244,6 +5320,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac174d1ce6cff445796db8ab6fc4e737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1750114628660145489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750114628660145484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720e35047aab174abb8ea8a8f1cecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  movePoint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2186823032798428197
 PrefabInstance:
   m_ObjectHideFlags: 0
