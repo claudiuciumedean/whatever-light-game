@@ -24,6 +24,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_Four.unity
     guid: 983ba9017f6f04dfeb7b9e80d30a3ab7
   - enabled: 1
+    path: Assets/Scenes/Level_rast4.unity
+    guid: 4063bb678fce3c041b0c04fa6c35c369
+  - enabled: 1
+    path: Assets/Scenes/Level_rast3.unity
+    guid: 8fa0b9b2604f59748a025e385b58d93d
+  - enabled: 1
+    path: Assets/Scenes/Level_rast2.unity
+    guid: 2ef58b58fdaaa5f4eae4286c5bd28423
+  - enabled: 1
+    path: Assets/Scenes/Level_mat1.unity
+    guid: 95b0f99d3fa5c4e4dbfd25ee5d7f2bb8
+  - enabled: 1
+    path: Assets/Scenes/Level_mat2.unity
+    guid: 985085139e2ae424581b020645171738
+  - enabled: 1
+    path: Assets/Scenes/Level_rast1.unity
+    guid: 961512eac2c76c049a459555c5ea7517
+  - enabled: 1
     path: Assets/Scenes/Level_Five.unity
     guid: a07105bacc5d015469c30753b8d19399
+  - enabled: 1
+    path: Assets/Scenes/Level_NorbertMirrors.unity
+    guid: 39544236e06883a43a51f4a45d7446c4
   m_configObjects: {}
