@@ -55,7 +55,13 @@ public class goalController : MonoBehaviour
 
         if(isCompleted) 
         {
-            levelCompletePanel.SetActive(true);
+            Invoke("delayLevelCpl",0.7f);
         }        
     }
+
+    void delayLevelCpl()
+    {
+        levelCompletePanel.SetActive(true);
+    }
+
 }
