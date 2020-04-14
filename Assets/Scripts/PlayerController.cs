@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float distance = 1f;
 
+    public AudioSource walkingSound;
+    public AudioSource pushSound;
+
     public Transform movePoint;
     public LayerMask stopsMovement;
     public LayerMask interactive;
@@ -134,6 +137,8 @@ public class PlayerController : MonoBehaviour
             }
 
             animator.SetBool("moving", false);
+            walkingSound.Play();
+
             return;
         }
 
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
     {       
         box = ray.collider.gameObject;
         lastInteracted = box;
-
+        pushSound.Play();
         box.transform.position += position;
 
         StateManager stateManager = (StateManager) box.GetComponent(typeof(StateManager));
