@@ -197,6 +197,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 341184368307943502, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 409086371581212344, guid: 30786969c30aec64986f153f70db8052,
         type: 3}
       propertyPath: pausePanel
@@ -222,6 +227,41 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 376425373}
+    - target: {fileID: 3891077495284455674, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670914959273181182, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670914959273181182, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670914959273181182, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670914959273181182, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670914959273181182, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 510.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670914959273181182, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 306.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4928381979569540643, guid: 30786969c30aec64986f153f70db8052,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -332,6 +372,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6750605217979135856, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8015926793074391977, guid: 30786969c30aec64986f153f70db8052,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -341,6 +386,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 256.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010764834708889961, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010764834708889961, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010764834708889961, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010764834708889961, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010764834708889961, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 510.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9010764834708889961, guid: 30786969c30aec64986f153f70db8052,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 303.14996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30786969c30aec64986f153f70db8052, type: 3}
@@ -483,6 +558,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -498,6 +574,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d74844cb69c4f9bb6c838267b6d6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 376425373}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

@@ -7,6 +7,16 @@ public class GameMenuHandler : MonoBehaviour
     public GameObject pausePanel;
     int count = 0;
 
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.F)) {
+            this.undoMove();
+        }
+
+        if(Input.GetKeyDown(KeyCode.P)) {
+            this.pauseGame();
+        }
+    }
+
     public void pauseGame() {
         pausePanel.SetActive(true);
     }
