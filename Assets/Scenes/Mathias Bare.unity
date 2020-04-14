@@ -607,11 +607,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corner: 1
   initialHit: {fileID: 2019329368}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 0}
+  type: 
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
+  previousSourceDirection: 
   direction: 
 --- !u!120 &187960061
 LineRenderer:
@@ -1493,7 +1497,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1739,11 +1743,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corner: 1
   initialHit: {fileID: 2019329368}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 0}
+  type: 
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
+  previousSourceDirection: 
   direction: 
 --- !u!120 &698642025
 LineRenderer:
@@ -2138,11 +2146,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corner: 1
   initialHit: {fileID: 2019329368}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 0}
+  type: 
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
+  previousSourceDirection: 
   direction: 
 --- !u!120 &1024248142
 LineRenderer:
@@ -2308,6 +2320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   distance: 1
+  walkingSound: {fileID: 0}
+  pushSound: {fileID: 0}
   movePoint: {fileID: 1288176582}
   stopsMovement:
     serializedVersion: 2
@@ -2461,6 +2475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: down
   initialHit: {fileID: 2019329368}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
+  lastHit: {fileID: 0}
 --- !u!120 &1142492835
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3377,6 +3393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievedGoal: {fileID: 21300000, guid: d95d95d3f8f28434c91657cf9e99f79b, type: 3}
+  sourceColor: 
+  pyramidColor: 
   spriteRenderer: {fileID: 1485587845}
   levelCompletePanel: {fileID: 0}
 --- !u!1 &1511467378
@@ -4228,11 +4246,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   corner: 1
   initialHit: {fileID: 2019329368}
+  lightColor: {r: 1, g: 1, b: 1, a: 1}
   sourceDirection: 
   interaction: 0
   lastHit: {fileID: 0}
+  type: 
   numberOfInteractions: 0
   reflection: 0
+  newPosition: 0
+  previousSourceDirection: 
   direction: 
 --- !u!120 &1727184497
 LineRenderer:
