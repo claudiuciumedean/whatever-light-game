@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
             StateManager stateManager = (StateManager) lastInteracted.GetComponent(typeof(StateManager));
             if(!stateManager.isStateEmpty()) {
                 Vector3 lastInteractedState =  stateManager.getLastState();
+                pushSound.Play();
                 lastInteracted.transform.position -= lastInteractedState;
                 
                 if(this.state.Count > 0 && this.state.Peek() == lastInteractedState) 
