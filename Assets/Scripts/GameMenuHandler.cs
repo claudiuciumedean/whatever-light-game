@@ -15,6 +15,14 @@ public class GameMenuHandler : MonoBehaviour
         pausePanel.SetActive(false);
     }
 
+    public void undoMove() {
+        GameObject player = GameObject.Find("Player");
+        if(!player) { return; }
+
+        PlayerController playerController = (PlayerController) player.GetComponent(typeof(PlayerController));
+        playerController.undoMove();
+    }
+
     public void restartLevel() {
         GameManager.Instance.restartLevel();
     }

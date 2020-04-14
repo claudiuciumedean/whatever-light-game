@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     GameObject box;
     Stack<Vector3> state = new Stack<Vector3>();
     GameObject lastInteracted = null;
-    // Start is called before the first frame update
+
     void Start()
     {
         movePoint.parent = null;
@@ -26,21 +26,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.R) && lastInteracted != null) 
-        {    
-            StateManager stateManager = (StateManager) lastInteracted.GetComponent(typeof(StateManager));
-            if(!stateManager.isStateEmpty()) {
-                Vector3 lastInteractedState =  stateManager.getLastState();
-                lastInteracted.transform.position -= lastInteractedState;
-                
-                if(this.state.Count > 0 && this.state.Peek() == lastInteractedState) 
-                {
-                    Vector3 playerLastState = this.state.Pop();
-                    movePoint.position -= playerLastState;
-                }
-            }        
-        }
 
         Physics2D.queriesStartInColliders = false;
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
@@ -213,5 +198,22 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }    
+    }
+
+    public void undoMove() {
+        if (lastInteracted != null) 
+        {    
+            StateManager stateManager = (StateManager) lastInteracted.GetComponent(typeof(StateManager));
+            if(!stateManager.isStateEmpty()) {
+                Vector3 lastInteractedState =  stateManager.getLastState();
+                lastInteracted.transform.position -= lastInteractedState;
+                
+                if(this.state.Count > 0 && this.state.Peek() == lastInteractedState) 
+                {
+                    Vector3 playerLastState = this.state.Pop();
+                    movePoint.position -= playerLastState;
+                }
+            }        
+        }
     }
 }
