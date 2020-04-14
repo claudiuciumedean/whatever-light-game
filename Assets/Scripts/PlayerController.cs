@@ -36,22 +36,22 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D leftRay = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, distance, boxMask);
         RaycastHit2D rightRay = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, boxMask);
 
-        if (Input.GetKeyDown(KeyCode.Space) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable"))
+        if (Input.GetKeyDown(KeyCode.R) && rightRay.collider != null && rightRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(rightRay);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable"))
+        if (Input.GetKeyDown(KeyCode.R) && leftRay.collider != null && leftRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(leftRay);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Rotatable"))
+        if (Input.GetKeyDown(KeyCode.R) && upRay.collider != null && upRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(upRay);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Rotatable"))
+        if (Input.GetKeyDown(KeyCode.R) && downRay.collider != null && downRay.collider.gameObject.tag.Contains("Rotatable"))
         {
             this.rotateBox(downRay);
         }
