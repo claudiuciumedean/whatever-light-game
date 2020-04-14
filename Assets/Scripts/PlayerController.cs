@@ -144,7 +144,8 @@ public class PlayerController : MonoBehaviour
         box = ray.collider.gameObject;
         lastInteracted = box;
         pushSound.Play();
-        box.transform.position += position;
+        //box.transform.position += position;
+        box.GetComponent<pushingScript>().movePoint = box.transform.position + position;
 
         StateManager stateManager = (StateManager) box.GetComponent(typeof(StateManager));
         stateManager.pushNewState(position);  
