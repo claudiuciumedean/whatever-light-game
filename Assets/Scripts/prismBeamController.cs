@@ -33,10 +33,15 @@ public class prismBeamController : MonoBehaviour
                 lineRenderer.SetPosition(0, transform.position);
                 if (hit.transform.tag.Contains("Reflective"))
                 {
-                    //lineRenderer.SetPosition(1, new Vector3(hit.point.x, hit.point.y, transform.position.z));
-                    //if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
-                    //    hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
-                    Invoke("delayNextMirror", 0.1f);
+                    if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2 && !hit.transform.GetComponent<mirrorController>().reflection)
+                    {
+                        hit.transform.GetComponent<mirrorController>().sourceDirection = direction;
+                        hit.transform.GetComponent<mirrorController>().updateLightColor(lightColor);
+                        hit.transform.GetComponent<mirrorController>().interaction = true;
+                    }
+                    if (hit.transform.GetComponent<mirrorController>().numberOfInteractions < 2)
+                        hit.transform.GetComponent<mirrorController>().numberOfInteractions++;
+                    //Invoke("delayNextMirror", 0.1f);
                 }
                 else if (hit.transform.tag.Contains("Prism"))
                 {
