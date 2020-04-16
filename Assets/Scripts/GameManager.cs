@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    List<int> levelsIdx = new List<int> { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+    List<int> levelsIdx = new List<int> { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
     int currentLevel;
 
     void Start() {
@@ -20,6 +20,10 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene("LevelSelectScene");
     }
 
+    public void showVictoryPanel() {
+        SceneManager.LoadScene("VictoryScene");
+    }
+
     public void startGame() {
         currentLevel = 0;
         SceneManager.LoadScene(levelsIdx[currentLevel]);
@@ -27,9 +31,9 @@ public class GameManager : Singleton<GameManager>
 
     public void completeLevel() {
         int tempIdx = ++currentLevel;
-
+        
         if(tempIdx == levelsIdx.Count) {
-            this.showStartMenuPanel();
+            this.showVictoryPanel();
             return;
         }
 
