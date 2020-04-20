@@ -8,7 +8,7 @@ public class GameMenuHandler : MonoBehaviour
     int count = 0;
 
     void Update() {
-        if(Input.GetKeyDown(KeyCode.G)) {
+        if(Input.GetKeyDown(KeyCode.F)) {
             this.undoMove();
         }
 
@@ -16,7 +16,7 @@ public class GameMenuHandler : MonoBehaviour
             this.pauseGame();
         }
 
-        if(Input.GetKeyDown(KeyCode.F)) {
+        if(Input.GetKeyDown(KeyCode.G)) {
             this.restartLevel();
         }
     }
