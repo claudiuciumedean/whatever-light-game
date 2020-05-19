@@ -15,6 +15,10 @@ public class GameMenuHandler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P)) {
             this.pauseGame();
         }
+
+        if(Input.GetKeyDown(KeyCode.G)) {
+            this.restartLevel();
+        }
     }
 
     public void pauseGame() {
